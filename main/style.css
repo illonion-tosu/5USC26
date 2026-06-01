@@ -1,0 +1,399 @@
+@font-face {
+    font-family: "04B_30";
+    src: url("../font/04B_30__.woff2");
+}
+@font-face {
+    font-family: "Dogica";
+    src: url("../font/dogica.woff2");
+    font-weight: 400;
+}
+
+:root {
+    --team-flag-horizontal-alignment: 16px;
+    --team-details-horizontal-alignment: 188px;
+    --greenscreen-player-1-4-top: 143px;
+    --greenscreen-height: 360px;
+    --greenscreen-one-player-width: 480px;
+    --middle-now-playing-section-height: 152px;
+    --middle-now-playing-top-section-height: 34px;
+    --middle-now-playing-top-section-padding-left: 30px;
+    --middle-now-playing-bottom-section-height: calc(var(--middle-now-playing-section-height) - var(--middle-now-playing-top-section-height) - 1px);
+    --middle-now-playing-bottom-section-details: 17px;
+    --middle-now-playing-bottom-section-horizontal-alignment: calc(var(--middle-now-playing-top-section-padding-left) - var(--middle-now-playing-bottom-section-details));
+    --score-colour-left: #DD5E5E;
+    --score-colour-right: #245FB3;
+    --score-horizontal-alignment: 440px;
+    --score-line-horizontal-alignment: 288px;
+}
+
+/* ===========================
+   Team Flag
+=========================== */
+.team-flag {
+    position: absolute;
+    top: 30px;
+    height: 93px;
+	width: 140px;
+	object-fit: cover;
+}
+.left-team-flag { left: var(--team-flag-horizontal-alignment); }
+.right-team-flag { right: var(--team-flag-horizontal-alignment); }
+
+/* ===========================
+   Team Name
+=========================== */
+.team-name {
+    position: absolute;
+    top: 30px;
+    font-family: "Dogica";
+    color: white;
+    font-size: 26px;
+}
+.left-team-name { left: var(--team-details-horizontal-alignment); }
+.right-team-name { right: var(--team-details-horizontal-alignment); }
+
+/* ===========================
+   Team Stars Container 
+=========================== */
+.team-star-container {
+    position: absolute;
+    top: 66px;
+    display: flex;
+    height: 59px;
+    gap: 13.5px;
+}
+.left-team-star-container { left: var(--team-details-horizontal-alignment); }
+.right-team-star-container {
+    right: var(--team-details-horizontal-alignment);
+    flex-direction: row-reverse;
+}
+/* ===========================
+   Team Stars
+=========================== */
+.team-star {
+    display: flex;
+    align-items: center;
+}
+.team-star:nth-child(odd) { align-items: flex-end; }
+.team-star:nth-child(even) {  align-items: flex-start; }
+
+/* ===========================
+   Middle Section 
+=========================== */
+.middle-section {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.logo { top: 41px; }
+.title { 
+    top: 237px;
+    transition: 500ms ease-in-out;
+}
+.round-name-container {
+    top: 310px;
+    font-family: "Dogica";
+    color: white;
+    font-size: 25px;
+    letter-spacing: 2px;
+    transition: 500ms ease-in-out;
+}
+
+/* ===========================
+   Greenscreens
+=========================== */
+#bg-video {
+	clip-path: polygon(
+		0px 143px,
+		480px 143px,
+		480px calc(143px + 360px),
+		calc(1920px - 480px) calc(143px + 360px),
+		calc(1920px - 480px) 143px,
+		1920px 143px,
+		1920px 0px,
+		0px 0px,
+		0px 1080px,
+		1920px 1080px,
+		1920px calc(143px + 2*360px),
+		0px calc(143px + 2*360px)
+	)
+}
+
+.greenscreen {
+    position: absolute;
+    height: var(--greenscreen-height);
+    background-color: #0F0;
+    z-index: 1;
+}
+.greenscreen-player-1, .greenscreen-player-4 {
+    top: var(--greenscreen-player-1-4-top);
+    width: var(--greenscreen-one-player-width);
+}
+.greenscreen-player-4 { right: 0;}
+.greenscreen-bottom-row {
+    top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height));
+    width: calc(var(--greenscreen-one-player-width) * 4);
+}
+
+/* ===========================
+   Now Playing Section
+=========================== */
+.middle-now-playing-section {
+    top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height));
+    width: 960px;
+    height: var(--middle-now-playing-section-height);
+    transition: 500ms ease-in-out;
+}
+.middle-now-playing-section > * {
+    position: absolute;
+    width: 100%;
+}
+
+/* ===========================
+   Now Playing Top Section
+=========================== */
+.now-playing-top-section {
+    height: var(--middle-now-playing-top-section-height);
+    background-color: #53555B;
+    color: white;
+    font-family: "Dogica";
+    font-size: 1.25em;
+    line-height: var(--middle-now-playing-top-section-height);
+    padding-left: var(--middle-now-playing-top-section-padding-left);
+    width: calc(100% - var(--middle-now-playing-top-section-padding-left));
+}
+.now-playing-top-section-left { background-color: rgba(204, 78, 78, 0.4)}
+.now-playing-top-section-right { background-color: rgba(28, 76, 143, 0.4)}
+
+/* ===========================
+   Now Playing Line Break
+=========================== */
+.now-playing-line-break {
+    top: var(--middle-now-playing-top-section-height);
+    height: 1px;
+    background-color: #3D3F44
+}
+
+/* ===========================
+   Now Playing Bottom Section
+=========================== */
+.now-playing-bottom-section {
+    top: calc(var(--middle-now-playing-top-section-height) + 1px);
+    height: var(--middle-now-playing-bottom-section-height);
+    background-color: #27282C;
+}
+
+/* ===========================
+   Now Playing Details
+=========================== */
+.now-playing-bottom-section-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: calc(100% - var(--middle-now-playing-bottom-section-details) * 2);
+    height: calc(100% - 24px);
+    background-image: url("https://assets.ppy.sh/beatmaps/2251201/covers/cover.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.now-playing-bottom-section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #27282CD0;
+}
+/* ===========================
+   Now Playing Left
+=========================== */
+.now-playing-bottom-section-left {
+    position: absolute;
+    left: var(--middle-now-playing-bottom-section-horizontal-alignment);
+    font-family: "Dogica";
+    font-size: 1.1em;
+    white-space: nowrap;
+    width: 405px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.now-playing-bottom-section-song-title {
+    top: 45%;
+    transform: translateY(-100%);
+    color: white;
+}
+.now-playing-bottom-section-song-artist {
+    bottom: 45%;
+    transform: translateY(100%);
+    color: #868789;
+}
+/* ===========================
+   Now Playing Stats
+=========================== */
+.now-playing-bottom-section-stats {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: var(--middle-now-playing-bottom-section-horizontal-alignment);
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    width: 485px;
+    font-family: "Dogica";
+}
+.stats-item {
+    height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: #868789;
+    font-size: 14px;
+}
+.stats-number {
+    margin-left: 5px;
+}
+.wide { grid-column: span 3; }
+
+/* ===========================
+   Scores Container
+=========================== */
+.scores-container {
+    position: absolute;
+    top: 0;
+    width: 1920px;
+    transition: 500ms ease-in-out;
+}
+/* ===========================
+   Scores
+=========================== */
+.score {
+    position: absolute;
+    top: 894px;
+    font-family: "Dogica";
+    font-size: 31px;
+    letter-spacing: 1px;
+}
+.score-left {
+    left: var(--score-horizontal-alignment);
+    transform: translateX(-50%);
+    color: var(--score-colour-left);
+}
+.score-right {
+    right: var(--score-horizontal-alignment);
+    transform: translateX(50%);
+    color: var(--score-colour-right);
+}
+/* ===========================
+   Score Lines
+=========================== */
+.score-line {
+    position: absolute;
+    top: 939px;
+    width: 297px;
+    height: 6px;
+}
+.score-line-left {
+    left: var(--score-line-horizontal-alignment);
+    background-color: var(--score-colour-left);
+}
+.score-line-right {
+    right: var(--score-line-horizontal-alignment);
+    background-color: var(--score-colour-right);
+}
+/* ===========================
+   Score Difference
+=========================== */
+.score-difference {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #8A8B8E;
+}
+.score-difference-number { font-size: 32px; }
+.score-difference-text {
+    top: 940px;
+    font-family: "Dogica";
+    font-size: 20px;
+}
+
+/* ===========================
+    Bottom Left Image
+=========================== */
+.bottom-left-image {
+    position: absolute;
+    left: -48px;
+    bottom: -67px;
+}
+
+/* ===========================
+    Iframe
+=========================== */
+iframe {
+    position: absolute;
+    bottom: -215px;
+    width: 1920px;
+    height: 215px;
+    transition: 500ms ease-in-out;
+    border: none;
+}
+
+/* ===========================
+    Sidebar
+=========================== */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 1920px;
+    width: 250px;
+    height: 1080px;
+    background-color: #26272B;
+    font-family: "Dogica";
+    font-weight: 400;
+}
+/* ===========================
+    Sidebar Section
+=========================== */
+.sidebar-section {
+    border-bottom: 2px solid white;
+    padding-bottom: 20px;
+}
+/* ===========================
+    Texts
+=========================== */
+.sidebar-section h1 {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    line-height: 30px;
+}
+/* ===========================
+    Button Container
+=========================== */
+.sidebar-button-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+/* ===========================
+    Button
+=========================== */
+button {
+    width: 105px;
+    height: 30px;
+    font-family: "Dogica";
+    font-weight: 400;
+    font-size: 0.6em;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+.sidebar-button-container button:active {
+    background-color: white;
+    color: #26272B;
+}
+.full-width-button { width: 220px; }
