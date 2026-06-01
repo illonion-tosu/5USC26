@@ -1,16 +1,16 @@
 @font-face {
-    font-family: "04B_30";
-    src: url("../font/04B_30__.woff2");
+    font-family: "ProtoMono";
+    font-weight: 400;
+    src: url("../fonts/ProtoMono-Regular.woff2")
 }
 @font-face {
-    font-family: "Dogica";
-    src: url("../font/dogica.woff2");
-    font-weight: 400;
+    font-family: "SnowyDays";
+    src: url("../fonts/Snowy\ Days.ttf")
 }
 
 :root {
-    --team-flag-horizontal-alignment: 16px;
-    --team-details-horizontal-alignment: 188px;
+    --team-flag-horizontal-alignment: 37px;
+    --team-details-horizontal-alignment: 192px;
     --greenscreen-player-1-4-top: 143px;
     --greenscreen-height: 360px;
     --greenscreen-one-player-width: 480px;
@@ -27,14 +27,28 @@
 }
 
 /* ===========================
+   Main
+=========================== */
+.main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    background: center / cover;
+    background-image: url("static/background.png")
+}
+
+/* ===========================
    Team Flag
 =========================== */
 .team-flag {
     position: absolute;
-    top: 30px;
-    height: 93px;
-	width: 140px;
-	object-fit: cover;
+    top: 43px;
+    height: 82px;
+    width: 134px;
+    object-fit: cover;
+    border-radius: 14px;
 }
 .left-team-flag { left: var(--team-flag-horizontal-alignment); }
 .right-team-flag { right: var(--team-flag-horizontal-alignment); }
@@ -44,10 +58,11 @@
 =========================== */
 .team-name {
     position: absolute;
-    top: 30px;
-    font-family: "Dogica";
+    top: 29px;
+    font-family: "ProtoMono";
+    font-weight: 400;
     color: white;
-    font-size: 26px;
+    font-size: 37px;
 }
 .left-team-name { left: var(--team-details-horizontal-alignment); }
 .right-team-name { right: var(--team-details-horizontal-alignment); }
@@ -57,10 +72,10 @@
 =========================== */
 .team-star-container {
     position: absolute;
-    top: 66px;
+    top: 89px;
     display: flex;
-    height: 59px;
-    gap: 13.5px;
+    height: 37px;
+    gap: 18px;
 }
 .left-team-star-container { left: var(--team-details-horizontal-alignment); }
 .right-team-star-container {
@@ -75,8 +90,8 @@
     align-items: center;
 }
 .team-star:nth-child(odd) { align-items: flex-end; }
-.team-star:nth-child(even) {  align-items: flex-start; }
-
+.team-star:nth-child(even) { align-items: flex-start; }
+.team-star-end { align-items: flex-start !important; }
 /* ===========================
    Middle Section 
 =========================== */
