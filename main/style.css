@@ -389,6 +389,32 @@
 }
 
 /* ===========================
+   Chat Display
+=========================== */
+.chat-display {
+    position: absolute;
+    top: 900px;
+    width: 100%;
+    height: 160px;
+}
+
+.chat-display > * {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.chat-display-title { z-index: 1; }
+
+.chat-display-container {
+    position: absolute;
+    top: 19px;
+    border: 3px solid #D91A5D;
+    width: 860px;
+    height: 141px;
+}
+
+/* ===========================
     Sidebar
 =========================== */
 .sidebar {
