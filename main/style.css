@@ -18,13 +18,9 @@
     --middle-now-playing-section-height: 153px;
     --middle-now-playing-top-section-height: 34px;
     --middle-now-playing-top-section-padding-left: 30px;
-    --middle-now-playing-bottom-section-height: calc(var(--middle-now-playing-section-height) - var(--middle-now-playing-top-section-height) - 1px);
-    --middle-now-playing-bottom-section-details: 17px;
-    --middle-now-playing-bottom-section-horizontal-alignment: calc(var(--middle-now-playing-top-section-padding-left) - var(--middle-now-playing-bottom-section-details));
     --score-colour-left: #D4145E;
     --score-colour-right: #70CDE9;
     --score-horizontal-alignment: 480px;
-    --now-playing-bottom-section-vertical-alignment: 45%;
     --score-bar-horizontal-alignment: 50%;
 }
 
@@ -229,90 +225,6 @@
 .now-playing-section-dial { left: 22px; }
 
 /* ===========================
-   Now Playing Top Section
-=========================== */
-.now-playing-top-section {
-    height: var(--middle-now-playing-top-section-height);
-    background-color: #53555B;
-    color: white;
-    font-family: "Dogica";
-    font-size: 1.25em;
-    line-height: var(--middle-now-playing-top-section-height);
-    padding-left: var(--middle-now-playing-top-section-padding-left);
-    width: calc(100% - var(--middle-now-playing-top-section-padding-left));
-}
-.now-playing-top-section-left { background-color: rgba(204, 78, 78, 40%)}
-.now-playing-top-section-right { background-color: rgba(28, 76, 143, 40%)}
-
-/* ===========================
-   Now Playing Line Break
-=========================== */
-.now-playing-line-break {
-    top: var(--middle-now-playing-top-section-height);
-    height: 1px;
-    background-color: #3D3F44
-}
-
-/* ===========================
-   Now Playing Bottom Section
-=========================== */
-.now-playing-bottom-section {
-    top: calc(var(--middle-now-playing-top-section-height) + 1px);
-    height: var(--middle-now-playing-bottom-section-height);
-    background-color: #27282C;
-}
-
-/* ===========================
-   Now Playing Details
-=========================== */
-.now-playing-bottom-section-details {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    width: calc(100% - var(--middle-now-playing-bottom-section-details) * 2);
-    height: calc(100% - 24px);
-    background-image: url("https://assets.ppy.sh/beatmaps/2251201/covers/cover.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-.now-playing-bottom-section-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #27282CD0;
-}
-/* ===========================
-   Now Playing Left
-=========================== */
-.now-playing-bottom-section-left {
-    position: absolute;
-    left: var(--middle-now-playing-bottom-section-horizontal-alignment);
-    font-family: "Dogica";
-    font-size: 1.1em;
-    white-space: nowrap;
-    width: 405px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.now-playing-bottom-section-song-title {
-    top: var(--now-playing-bottom-section-vertical-alignment);
-    transform: translateY(-100%);
-    color: white;
-}
-
-.now-playing-bottom-section-song-artist {
-    bottom: var(--now-playing-bottom-section-vertical-alignment);
-    transform: translateY(100%);
-    color: #868789;
-}
-
-/* ===========================
    Scores Container
 =========================== */
 .scores-container {
@@ -424,7 +336,7 @@
     width: 250px;
     height: 1080px;
     background-color: #26272B;
-    font-family: "Dogica";
+    font-family: ProtoMono, sans-serif;
     font-weight: 400;
 }
 
@@ -464,7 +376,7 @@
 button {
     width: 105px;
     height: 30px;
-    font-family: "Dogica";
+    font-family: ProtoMono, sans-serif;
     font-weight: 400;
     font-size: 0.6em;
     background-color: transparent;
