@@ -1,10 +1,11 @@
 @font-face {
-    font-family: "ProtoMono";
+    font-family: ProtoMono;
     font-weight: 400;
     src: url("../fonts/ProtoMono-Regular.woff2")
 }
+
 @font-face {
-    font-family: "SnowyDays";
+    font-family: SnowyDays;
     src: url("../fonts/Snowy\ Days.ttf")
 }
 
@@ -23,6 +24,8 @@
     --score-colour-left: #D4145E;
     --score-colour-right: #70CDE9;
     --score-horizontal-alignment: 480px;
+    --now-playing-bottom-section-vertical-alignment: 45%;
+    --score-bar-horizontal-alignment: 50%;
 }
 
 /* ===========================
@@ -58,7 +61,7 @@
 .team-name {
     position: absolute;
     top: 29px;
-    font-family: "ProtoMono";
+    font-family: ProtoMono, sans-serif;
     font-weight: 400;
     color: white;
     font-size: 37px;
@@ -76,7 +79,9 @@
     height: 37px;
     gap: 18px;
 }
+
 .left-team-star-container { left: var(--team-details-horizontal-alignment); }
+
 .right-team-star-container {
     right: var(--team-details-horizontal-alignment);
     flex-direction: row-reverse;
@@ -101,13 +106,13 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 .round-name-container {
     top: 269px;
-    font-family: "ProtoMono";
+    font-family: ProtoMono, sans-serif;
     color: white;
     font-size: 33px;
     letter-spacing: 2px;
-    /* transition: 500ms ease-in-out; */
 }
 
 /* ===========================
@@ -119,11 +124,14 @@
     background-color: #0F0;
     z-index: 1;
 }
+
 .greenscreen-player-1, .greenscreen-player-4 {
     top: var(--greenscreen-player-1-4-top);
     width: var(--greenscreen-one-player-width);
 }
+
 .greenscreen-player-4 { right: 0; }
+
 .greenscreen-bottom-row {
     top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height));
     width: calc(var(--greenscreen-one-player-width) * 4);
@@ -140,6 +148,7 @@
     border: 4px solid #808183;
     background-image: linear-gradient(to right, #A2A5A7, #E4E6E8, #A2A5A7);
 }
+
 .middle-now-playing-section > *{
     position: absolute;
     top: 50%;
@@ -147,7 +156,7 @@
 }
 
 /* ===========================
-   Now Playing Section Insides
+   Now Playing Section Background
 =========================== */
 .now-playing-section-details {
     left: 153px;
@@ -158,6 +167,7 @@
     background-image: url("https://assets.ppy.sh/beatmaps/39804/covers/cover.jpg");
     color: #6C6D70;
 }
+
 .now-playing-section-details-overlay {
     position: absolute;
     top: 0;
@@ -167,6 +177,10 @@
     border-radius: inherit;
     background-color: rgba(0,0,0,0.8);
 }
+
+/* ===========================
+   Now Playing Metatadata
+=========================== */
 .now-playing-metadata {
     position: absolute;
     top: 50%;
@@ -174,18 +188,24 @@
     transform: translateY(-50%);
     width: 370px;
     height: 70px;
-    font-family: "ProtoMono";
+    font-family: ProtoMono, sans-serif;
     font-size: 1.75em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .now-playing-metadata-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .now-playing-metadata-title { color: white; }
+
+/* ===========================
+   Now Playing Stats
+=========================== */
 .now-playing-stats {
     position: absolute;
     right: 20px;
@@ -196,19 +216,15 @@
     grid-template-rows: repeat(3, 1fr);
     width: 350px;
     height: 70px;
-    font-family: "ProtoMono";
+    font-family: ProtoMono, sans-serif;
     font-size: 17px;
     align-items: center;
 }
-.now-playing-stats-sr {
-    grid-column: 1 / 4;
-}
+.now-playing-stats-sr { grid-column: 1 / 4; }
 .now-playing-stats > :nth-child(3),
 .now-playing-stats > :nth-child(4),
 .now-playing-stats > :nth-child(6),
-.now-playing-stats > :nth-child(7) {
-    text-align: right;
-}
+.now-playing-stats > :nth-child(7) { text-align: right; }
 .now-playing-stats-item { font-variant-numeric: tabular-nums; }
 .now-playing-section-dial { left: 22px; }
 
@@ -225,8 +241,8 @@
     padding-left: var(--middle-now-playing-top-section-padding-left);
     width: calc(100% - var(--middle-now-playing-top-section-padding-left));
 }
-.now-playing-top-section-left { background-color: rgba(204, 78, 78, 0.4)}
-.now-playing-top-section-right { background-color: rgba(28, 76, 143, 0.4)}
+.now-playing-top-section-left { background-color: rgba(204, 78, 78, 40%)}
+.now-playing-top-section-right { background-color: rgba(28, 76, 143, 40%)}
 
 /* ===========================
    Now Playing Line Break
@@ -261,6 +277,7 @@
     background-size: cover;
     background-position: center;
 }
+
 .now-playing-bottom-section-overlay {
     position: absolute;
     top: 0;
@@ -282,41 +299,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .now-playing-bottom-section-song-title {
-    top: 45%;
+    top: var(--now-playing-bottom-section-vertical-alignment);
     transform: translateY(-100%);
     color: white;
 }
+
 .now-playing-bottom-section-song-artist {
-    bottom: 45%;
+    bottom: var(--now-playing-bottom-section-vertical-alignment);
     transform: translateY(100%);
     color: #868789;
 }
-/* ===========================
-   Now Playing Stats
-=========================== */
-.now-playing-bottom-section-stats {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: var(--middle-now-playing-bottom-section-horizontal-alignment);
-    display: grid;
-    grid-template-columns: 200px 1fr 1fr;
-    width: 485px;
-    font-family: "Dogica";
-}
-.stats-item {
-    height: 22px;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    color: #868789;
-    font-size: 14px;
-}
-.stats-number {
-    margin-left: 5px;
-}
-.wide { grid-column: span 3; }
 
 /* ===========================
    Scores Container
@@ -327,6 +321,7 @@
     width: 1920px;
     transition: 500ms ease-in-out;
 }
+
 /* ===========================
    Score Bars
 =========================== */
@@ -335,12 +330,14 @@
     height: 23px;
     width: 100px;
 }
+
 .score-bar-left {
-    right: 50%;
+    right: var(--score-bar-horizontal-alignment);
     background-color: var(--score-colour-left);
 }
+
 .score-bar-right {
-    left: 50%;
+    left: var(--score-bar-horizontal-alignment);
     background-color: var(--score-colour-right);
 }
 
@@ -350,21 +347,24 @@
 .score {
     position: absolute;
     top: 28px;
-    font-family: "ProtoMono";
+    font-family: ProtoMono, sans-serif;
     font-weight: 400;
     font-size: 30px;
     letter-spacing: 1px;
 }
+
 .score-left {
     left: var(--score-horizontal-alignment);
     transform: translateX(-50%);
     color: var(--score-colour-left);
 }
+
 .score-right {
     right: var(--score-horizontal-alignment);
     transform: translateX(50%);
     color: var(--score-colour-right);
 }
+
 /* ===========================
    Score Difference
 =========================== */
@@ -427,6 +427,7 @@
     font-family: "Dogica";
     font-weight: 400;
 }
+
 /* ===========================
     Sidebar Section
 =========================== */
@@ -434,6 +435,7 @@
     border-bottom: 2px solid white;
     padding-bottom: 20px;
 }
+
 /* ===========================
     Texts
 =========================== */
@@ -444,6 +446,7 @@
     font-weight: 700;
     line-height: 30px;
 }
+
 /* ===========================
     Button Container
 =========================== */
@@ -454,6 +457,7 @@
     justify-content: center;
     gap: 10px;
 }
+
 /* ===========================
     Button
 =========================== */
@@ -468,8 +472,10 @@ button {
     border: 2px solid white;
     border-radius: 10px;
 }
+
 .sidebar-button-container button:active {
     background-color: white;
     color: #26272B;
 }
+
 .full-width-button { width: 220px; }
