@@ -20,10 +20,9 @@
     --middle-now-playing-bottom-section-height: calc(var(--middle-now-playing-section-height) - var(--middle-now-playing-top-section-height) - 1px);
     --middle-now-playing-bottom-section-details: 17px;
     --middle-now-playing-bottom-section-horizontal-alignment: calc(var(--middle-now-playing-top-section-padding-left) - var(--middle-now-playing-bottom-section-details));
-    --score-colour-left: #DD5E5E;
-    --score-colour-right: #245FB3;
-    --score-horizontal-alignment: 440px;
-    --score-line-horizontal-alignment: 288px;
+    --score-colour-left: #D4145E;
+    --score-colour-right: #70CDE9;
+    --score-horizontal-alignment: 480px;
 }
 
 /* ===========================
@@ -211,7 +210,7 @@
     text-align: right;
 }
 .now-playing-stats-item { font-variant-numeric: tabular-nums; }
-.now-playing-section-recorder-button { left: 22px; }
+.now-playing-section-dial { left: 22px; }
 
 /* ===========================
    Now Playing Top Section
@@ -324,18 +323,36 @@
 =========================== */
 .scores-container {
     position: absolute;
-    top: 0;
+    top: 881px;
     width: 1920px;
     transition: 500ms ease-in-out;
 }
+/* ===========================
+   Score Bars
+=========================== */
+.score-bar {
+    position: absolute;
+    height: 23px;
+    width: 100px;
+}
+.score-bar-left {
+    right: 50%;
+    background-color: var(--score-colour-left);
+}
+.score-bar-right {
+    left: 50%;
+    background-color: var(--score-colour-right);
+}
+
 /* ===========================
    Scores
 =========================== */
 .score {
     position: absolute;
-    top: 894px;
-    font-family: "Dogica";
-    font-size: 31px;
+    top: 28px;
+    font-family: "ProtoMono";
+    font-weight: 400;
+    font-size: 30px;
     letter-spacing: 1px;
 }
 .score-left {
@@ -349,57 +366,26 @@
     color: var(--score-colour-right);
 }
 /* ===========================
-   Score Lines
-=========================== */
-.score-line {
-    position: absolute;
-    top: 939px;
-    width: 297px;
-    height: 6px;
-}
-.score-line-left {
-    left: var(--score-line-horizontal-alignment);
-    background-color: var(--score-colour-left);
-}
-.score-line-right {
-    right: var(--score-line-horizontal-alignment);
-    background-color: var(--score-colour-right);
-}
-/* ===========================
    Score Difference
 =========================== */
 .score-difference {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    color: #8A8B8E;
-}
-.score-difference-number { font-size: 32px; }
-.score-difference-text {
-    top: 940px;
-    font-family: "Dogica";
-    font-size: 20px;
+    color: white;
+    font-size: 1.75em;
+    display: flex;
+    align-items: flex-end;
 }
 
 /* ===========================
-    Bottom Left Image
+   Score Dial
 =========================== */
-.bottom-left-image {
+.score-dial {
     position: absolute;
-    left: -48px;
-    bottom: -67px;
-}
-
-/* ===========================
-    Iframe
-=========================== */
-iframe {
-    position: absolute;
-    bottom: -215px;
-    width: 1920px;
-    height: 215px;
-    transition: 500ms ease-in-out;
-    border: none;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* ===========================
