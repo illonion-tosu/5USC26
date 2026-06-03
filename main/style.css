@@ -11,10 +11,10 @@
 :root {
     --team-flag-horizontal-alignment: 37px;
     --team-details-horizontal-alignment: 192px;
-    --greenscreen-player-1-4-top: 143px;
+    --greenscreen-player-1-4-top: 161px;
     --greenscreen-height: 360px;
     --greenscreen-one-player-width: 480px;
-    --middle-now-playing-section-height: 152px;
+    --middle-now-playing-section-height: 153px;
     --middle-now-playing-top-section-height: 34px;
     --middle-now-playing-top-section-padding-left: 30px;
     --middle-now-playing-bottom-section-height: calc(var(--middle-now-playing-section-height) - var(--middle-now-playing-top-section-height) - 1px);
@@ -82,6 +82,7 @@
     right: var(--team-details-horizontal-alignment);
     flex-direction: row-reverse;
 }
+
 /* ===========================
    Team Stars
 =========================== */
@@ -92,6 +93,7 @@
 .team-star:nth-child(odd) { align-items: flex-end; }
 .team-star:nth-child(even) { align-items: flex-start; }
 .team-star-end { align-items: flex-start !important; }
+
 /* ===========================
    Middle Section 
 =========================== */
@@ -100,40 +102,18 @@
     left: 50%;
     transform: translateX(-50%);
 }
-.logo { top: 41px; }
-.title { 
-    top: 237px;
-    transition: 500ms ease-in-out;
-}
 .round-name-container {
-    top: 310px;
-    font-family: "Dogica";
+    top: 269px;
+    font-family: "ProtoMono";
     color: white;
-    font-size: 25px;
+    font-size: 33px;
     letter-spacing: 2px;
-    transition: 500ms ease-in-out;
+    /* transition: 500ms ease-in-out; */
 }
 
 /* ===========================
    Greenscreens
 =========================== */
-#bg-video {
-	clip-path: polygon(
-		0px 143px,
-		480px 143px,
-		480px calc(143px + 360px),
-		calc(1920px - 480px) calc(143px + 360px),
-		calc(1920px - 480px) 143px,
-		1920px 143px,
-		1920px 0px,
-		0px 0px,
-		0px 1080px,
-		1920px 1080px,
-		1920px calc(143px + 2*360px),
-		0px calc(143px + 2*360px)
-	)
-}
-
 .greenscreen {
     position: absolute;
     height: var(--greenscreen-height);
@@ -144,7 +124,7 @@
     top: var(--greenscreen-player-1-4-top);
     width: var(--greenscreen-one-player-width);
 }
-.greenscreen-player-4 { right: 0;}
+.greenscreen-player-4 { right: 0; }
 .greenscreen-bottom-row {
     top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height));
     width: calc(var(--greenscreen-one-player-width) * 4);
@@ -154,15 +134,84 @@
    Now Playing Section
 =========================== */
 .middle-now-playing-section {
-    top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height));
-    width: 960px;
+    top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height) - 8px);
+    width: 952px;
     height: var(--middle-now-playing-section-height);
-    transition: 500ms ease-in-out;
+    /* transition: 500ms ease-in-out; */
+    border: 4px solid #808183;
+    background-image: linear-gradient(to right, #A2A5A7, #E4E6E8, #A2A5A7);
 }
-.middle-now-playing-section > * {
+.middle-now-playing-section > *{
     position: absolute;
-    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
 }
+
+/* ===========================
+   Now Playing Section Insides
+=========================== */
+.now-playing-section-details {
+    left: 153px;
+    width: 781px;
+    height: 110px;
+    border-radius: 10px;
+    background: center / cover;
+    background-image: url("https://assets.ppy.sh/beatmaps/39804/covers/cover.jpg");
+    color: #6C6D70;
+}
+.now-playing-section-details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background-color: rgba(0,0,0,0.8);
+}
+.now-playing-metadata {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 370px;
+    height: 70px;
+    font-family: "ProtoMono";
+    font-size: 1.75em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.now-playing-metadata-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.now-playing-metadata-title { color: white; }
+.now-playing-stats {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 150px 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    width: 350px;
+    height: 70px;
+    font-family: "ProtoMono";
+    font-size: 17px;
+    align-items: center;
+}
+.now-playing-stats-sr {
+    grid-column: 1 / 4;
+}
+.now-playing-stats > :nth-child(3),
+.now-playing-stats > :nth-child(4),
+.now-playing-stats > :nth-child(6),
+.now-playing-stats > :nth-child(7) {
+    text-align: right;
+}
+.now-playing-stats-item { font-variant-numeric: tabular-nums; }
+.now-playing-section-recorder-button { left: 22px; }
 
 /* ===========================
    Now Playing Top Section

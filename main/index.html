@@ -14,11 +14,6 @@
     <script src="../_shared/utils.js"></script>
 </head>
 <body>
-    <!-- Videos -->
-    <video id="bg-video" autoplay muted loop>
-        <source src="../_shared/assets/background.mp4">
-    </video>
-
     <div class="main">
         <!-- Team Flags -->
         <img class="team-flag left-team-flag" id="left-team-flag" src="../flags/transparent.png">
@@ -33,8 +28,6 @@
         <div class="team-star-container right-team-star-container" id="right-team-star-container"></div>
 
         <!-- Logo and title -->
-        <img class="middle-section logo" src="../_shared/assets/logo.png">
-        <img class="middle-section title" id="title" src="static/title.png">
         <div class="middle-section round-name-container" id="round-name-container"><span id="round-name"></span> - <span class="league-name" id="league-name">MAJOR LEAGUE</span></div>
 
         <!-- Greenscreens -->
@@ -44,6 +37,25 @@
 
         <!-- Now Playing Section -->
         <div class="middle-section middle-now-playing-section" id="now-playing-section">
+            <img class="now-playing-section-recorder-button" src="static/recorder-button.png">
+            <div class="now-playing-section-details">
+                <div class="now-playing-section-details-overlay"></div>
+                <div class="now-playing-metadata">
+                    <div class="now-playing-metadata-text now-playing-metadata-title">AAAAAAAAAAAAAAAAAAAAAA</div>
+                    <div class="now-playing-metadata-text now-playing-metadata-artist">AAAAAAAAAAAAAAAAAAAAAA</div>
+                </div>
+                <div class="now-playing-stats">
+                    <div class="now-playing-stats-item now-playing-stats-sr">SR: <span>9.99*</span></div>
+                    <div class="now-playing-stats-item">LENGTH: <span>99:99</span></div>
+                    <div class="now-playing-stats-item">AR: <span>10.3</span></div>
+                    <div class="now-playing-stats-item">HP: <span>10.3</span></div>
+                    <div class="now-playing-stats-item">BPM: <span>999-999</span></div>
+                    <div class="now-playing-stats-item">CS: <span>10.1</span></div>
+                    <div class="now-playing-stats-item">ID: <span>10.1</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="middle-section middle-now-playing-section" id="now-playing-section">
             <div class="now-playing-top-section" id="now-playing-top-section">NM1</div>
             <div class="now-playing-line-break"></div>
             <div class="now-playing-bottom-section">
@@ -62,7 +74,7 @@
                     <div class="stats-item">OD: <span class="stats-number" id="stats-od"></span></div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Scores -->
         <div class="scores-container" id="scores-container">
