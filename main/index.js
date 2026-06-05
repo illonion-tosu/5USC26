@@ -179,33 +179,17 @@ socket.onmessage = event => {
         if (currentScoreLeft > currentScoreRight) {
             scoreBarLeftEl.style.width = `${scoreBarRectangleWidth}px`
             scoreBarRightEl.style.width = "0px"
-
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 - scoreBarDifferencePercent * 120)}deg)`
         } else if (currentScoreLeft === currentScoreRight) {
             scoreBarLeftEl.style.width = "0px"
             scoreBarRightEl.style.width = "0px"
-
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90)}deg)`
         } else if (currentScoreLeft < currentScoreRight) {
             scoreBarLeftEl.style.width = "0px"
             scoreBarRightEl.style.width = `${scoreBarRectangleWidth}px`
-
-            scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 - scoreBarDifferencePercent * 120)}deg)`
+            scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 + scoreBarDifferencePercent * 120)}deg)`
         }
     }
-
-
-    // Update lines
-    // if (currentScoreLeft > currentScoreRight) {
-    //     scoreLineLeftEl.style.display = "block"
-    //     scoreLineRightEl.style.display = "none"
-    // } else if (currentScoreLeft === currentScoreRight) {
-    //     scoreLineLeftEl.style.display = "block"
-    //     scoreLineRightEl.style.display = "block"
-    // } else if (currentScoreLeft < currentScoreRight) {
-    //     scoreLineLeftEl.style.display = "none"
-    //     scoreLineRightEl.style.display = "block"
-    // }
 }
 
 // Set number stats
