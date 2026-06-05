@@ -22,7 +22,6 @@ const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.bea
 // Now Playing Information
 const nowPlayingSectionEl = document.getElementById("now-playing-section")
 const nowPlayingTopSectionEl = document.getElementById("now-playing-top-section")
-const nowPlayingBottomSectionDetailsEl = document.getElementById("now-playing-bottom-section-details")
 const nowPlayingSongTitleEl = document.getElementById("now-playing-song-title")
 const nowPlayingSongArtistEl = document.getElementById("now-playing-song-artist")
 // Stats
@@ -47,9 +46,6 @@ const animation = {
     "scoreDifferenceNumber": new CountUp(scoreDifferenceNumberEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: "." }),
 }
 let scoreVisible = true
-// Score lines
-const scoreLineLeftEl = document.getElementById("score-line-left")
-const scoreLineRightEl = document.getElementById("score-line-right")
 
 // Iframe
 const iframe = document.getElementById("iframe")
@@ -79,13 +75,11 @@ socket.onmessage = event => {
         currentChecksum = data.beatmap.checksum
         mapFound = false
 
-        nowPlayingBottomSectionDetailsEl.style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${data.beatmap.set}/covers/cover.jpg")`
         nowPlayingSongTitleEl.textContent = data.beatmap.title
         nowPlayingSongArtistEl.textContent = data.beatmap.artist
     
         currentBeatmap = findBeatmaps(currentId)
         if (currentBeatmap) {
-            nowPlayingTopSectionEl.textContent = `${currentBeatmap.mod.toUpperCase()}${currentBeatmap.order}`
             let sr = Math.round(Number(currentBeatmap.difficultyrating) * 100) / 100
             let len = Number(currentBeatmap.total_length)
             let ar = Math.round(Number(currentBeatmap.diff_approach) * 10) / 10
@@ -119,8 +113,6 @@ socket.onmessage = event => {
                 od: od
             })
             mapFound = true
-        } else {
-            nowPlayingTopSectionEl.textContent = "NOW PLAYING"
         }
     }
 
@@ -149,46 +141,46 @@ socket.onmessage = event => {
     animation.scoreDifferenceNumber.update(Math.abs(currentScoreLeft - currentScoreRight))
 
     // Update lines
-    if (currentScoreLeft > currentScoreRight) {
-        scoreLineLeftEl.style.display = "block"
-        scoreLineRightEl.style.display = "none"
-    } else if (currentScoreLeft === currentScoreRight) {
-        scoreLineLeftEl.style.display = "block"
-        scoreLineRightEl.style.display = "block"
-    } else if (currentScoreLeft < currentScoreRight) {
-        scoreLineLeftEl.style.display = "none"
-        scoreLineRightEl.style.display = "block"
-    }
+    // if (currentScoreLeft > currentScoreRight) {
+    //     scoreLineLeftEl.style.display = "block"
+    //     scoreLineRightEl.style.display = "none"
+    // } else if (currentScoreLeft === currentScoreRight) {
+    //     scoreLineLeftEl.style.display = "block"
+    //     scoreLineRightEl.style.display = "block"
+    // } else if (currentScoreLeft < currentScoreRight) {
+    //     scoreLineLeftEl.style.display = "none"
+    //     scoreLineRightEl.style.display = "block"
+    // }
 
     // Score visibility
     if (scoreVisible !== data.tourney.scoreVisible) {
         scoreVisible = data.tourney.scoreVisible
 
-        if (scoreVisible) {
-            titleEl.style.top = "237px"
-            roundNameContainerEl.style.top = "310px"
-            nowPlayingSectionEl.style.top = `calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height))`
-            scoresContainerEl.style.top = "0px"
-            iframe.style.bottom = "-263px"
-        } else {
-            titleEl.style.top = "257px"
-            roundNameContainerEl.style.top = "354px"
-            nowPlayingSectionEl.style.top = `calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height)`
-            scoresContainerEl.style.top = "-217px"
-            iframe.style.bottom = "0px"
-        }
+        // if (scoreVisible) {
+        //     titleEl.style.top = "237px"
+        //     roundNameContainerEl.style.top = "310px"
+        //     nowPlayingSectionEl.style.top = `calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height))`
+        //     scoresContainerEl.style.top = "0px"
+        //     iframe.style.bottom = "-263px"
+        // } else {
+        //     titleEl.style.top = "257px"
+        //     roundNameContainerEl.style.top = "354px"
+        //     nowPlayingSectionEl.style.top = `calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height)`
+        //     scoresContainerEl.style.top = "-217px"
+        //     iframe.style.bottom = "0px"
+        // }
     }
 }
 
 // Set number stats
 function setStats({sr, len, ar, hp, bpm, cs, od}) {
-    statsSrEl.textContent = `${sr}*`
+    statsSrEl.textContent = `${sr.toFixed(2)}*`
     statsLengthEl.textContent = setLengthDisplay(len)
-    statsArEl.textContent = ar
-    statsHpEl.textContent = hp
-    statsBpmEl.textContent = bpm
-    statsCsEl.textContent = cs
-    statsOdEl.textContent = od
+    statsArEl.textContent = ar.toFixed(1)
+    statsHpEl.textContent = hp.toFixed(1)
+    statsBpmEl.textContent = Math.round(bpm)
+    statsCsEl.textContent = cs.toFixed(1)
+    statsOdEl.textContent = od.toFixed(1)
 }
 
 // Set flag and team name
@@ -217,7 +209,6 @@ let currentLeagueName, previousLeagueName
 let currentFirstTo, previousFirstTo
 let currentStarLeft, previousStarLeft
 let currentStarRight, previousStarRight
-let currentPicker, previousPicker
 let isStarToggled
 setInterval(() => {
     // Set league name
@@ -261,13 +252,6 @@ setInterval(() => {
         }
     }
 
-    // Set current picker
-    currentPicker = getCookie("currentPicker")
-    if (currentPicker !== previousPicker) {
-        previousPicker = currentPicker
-        setCurrentPicker(currentPicker)
-    }
-
     // Star toggling
     isStarToggled = getCookie("isStarToggled")
     if (isStarToggled === "true") {
@@ -278,19 +262,3 @@ setInterval(() => {
         rightTeamStarContainerEl.style.opacity = 0
     }
 }, 200)
-
-// Set current picker
-function setCurrentPicker(team) {
-    const currentPickerTeam = team
-    const otherTeam = currentPickerTeam === "left" ? "right" : currentPickerTeam === "right" ? "left" : ""
-    
-    if (otherTeam === "") {
-        nowPlayingTopSectionEl.classList.remove(`now-playing-top-section-left`)
-        nowPlayingTopSectionEl.classList.remove(`now-playing-top-section-right`)
-        document.cookie = `currentPicker=""; path=/`
-    } else {
-        nowPlayingTopSectionEl.classList.add(`now-playing-top-section-${currentPickerTeam}`)
-        nowPlayingTopSectionEl.classList.remove(`now-playing-top-section-${otherTeam}`)
-        document.cookie = `currentPicker=${team}; path=/`
-    }
-}

@@ -6,7 +6,6 @@
     <title>Main</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../_shared/shared.css">
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
@@ -41,17 +40,17 @@
             <div class="now-playing-section-details">
                 <div class="now-playing-section-details-overlay"></div>
                 <div class="now-playing-metadata">
-                    <div class="now-playing-metadata-text now-playing-metadata-title">AAAAAAAAAAAAAAAAAAAAAA</div>
-                    <div class="now-playing-metadata-text now-playing-metadata-artist">AAAAAAAAAAAAAAAAAAAAAA</div>
+                    <div class="now-playing-metadata-text now-playing-metadata-title" id="now-playing-song-title">AAAAAAAAAAAAAAAAAAAAAA</div>
+                    <div class="now-playing-metadata-text now-playing-metadata-artist" id="now-playing-song-artist">AAAAAAAAAAAAAAAAAAAAAA</div>
                 </div>
                 <div class="now-playing-stats">
-                    <div class="now-playing-stats-item now-playing-stats-sr">SR: <span>9.99*</span></div>
-                    <div class="now-playing-stats-item">LENGTH: <span>99:99</span></div>
-                    <div class="now-playing-stats-item">AR: <span>10.3</span></div>
-                    <div class="now-playing-stats-item">HP: <span>10.3</span></div>
-                    <div class="now-playing-stats-item">BPM: <span>999-999</span></div>
-                    <div class="now-playing-stats-item">CS: <span>10.1</span></div>
-                    <div class="now-playing-stats-item">ID: <span>10.1</span></div>
+                    <div class="now-playing-stats-item now-playing-stats-sr">SR: <span id="stats-sr">9.99*</span></div>
+                    <div class="now-playing-stats-item">LENGTH: <spa id="stats-length">99:99</span></div>
+                    <div class="now-playing-stats-item">AR: <span id="stats-ar">10.3</span></div>
+                    <div class="now-playing-stats-item">HP: <span id="stats-hp">10.3</span></div>
+                    <div class="now-playing-stats-item">BPM: <span id="stats-bpm">999-999</span></div>
+                    <div class="now-playing-stats-item">CS: <span id="stats-cs">10.1</span></div>
+                    <div class="now-playing-stats-item">OD: <span id="stats-od">10.1</span></div>
                 </div>
             </div>
         </div>
@@ -71,18 +70,6 @@
             <img class="chat-display-title" src="static/live-chat.png">
             <div class="chat-display-container"></div>
         </div>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <section class="sidebar-section">
-            <h1>Current Picker</h1>
-            <div class="sidebar-button-container">
-                <button onclick="setCurrentPicker('left')">RED</button>
-                <button onclick="setCurrentPicker('right')">BLUE</button>
-                <button onclick="setCurrentPicker('')" class="full-width-button">NO ONE</button>
-            </div>
-        </section>
     </div>
 
     <script src="index.js"></script>
