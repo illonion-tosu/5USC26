@@ -138,7 +138,8 @@
    Now Playing Section
 =========================== */
 .middle-now-playing-section {
-    --side-colour: rgb(162 165 167)
+    --side-colour: rgb(162 165 167);
+    
     top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height) - 8px);
     width: 952px;
     height: var(--middle-now-playing-section-height);
