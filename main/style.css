@@ -244,7 +244,7 @@
 .score-bar {
     position: absolute;
     height: 23px;
-    width: 100px;
+    transition: 200ms ease-in-out;
 }
 
 .score-bar-left {
@@ -301,7 +301,8 @@
     position: absolute;
     top: 80px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) rotate(180deg);
+    transition: 500ms ease-in-out;
 }
 
 /* ===========================

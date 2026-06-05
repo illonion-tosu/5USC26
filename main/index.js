@@ -20,6 +20,7 @@ getBeatmaps()
 const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.beatmap_id) === Number(beatmapId))
 
 // Now Playing Information
+const nowPlayingSectionDetailsEl = document.getElementById("now-playing-section-details")
 const nowPlayingSectionEl = document.getElementById("now-playing-section")
 const nowPlayingTopSectionEl = document.getElementById("now-playing-top-section")
 const nowPlayingSongTitleEl = document.getElementById("now-playing-song-title")
@@ -35,6 +36,9 @@ const statsOdEl = document.getElementById("stats-od")
 // Variables
 let currentId, currentChecksum, mapFound = false, currentBeatmap
 
+// Score Bar
+const scoreBarLeftEl = document.getElementById("score-bar-left")
+const scoreBarRightEl = document.getElementById("score-bar-right")
 // Scores
 const scoresContainerEl = document.getElementById("scores-container")
 const scoreLeftEl = document.getElementById("score-left")
@@ -45,10 +49,10 @@ const animation = {
     "scoreRight": new CountUp(scoreRightEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: "." }),
     "scoreDifferenceNumber": new CountUp(scoreDifferenceNumberEl, 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ",", decimal: "." }),
 }
-let scoreVisible = true
+let scoreVisible
 
-// Iframe
-const iframe = document.getElementById("iframe")
+// Score Dial
+const scoreDialEl = document.getElementById("score-dial")
 
 // Star containers
 const leftTeamStarContainerEl = document.getElementById("left-team-star-container")
@@ -58,6 +62,7 @@ const rightTeamStarContainerEl = document.getElementById("right-team-star-contai
 const socket = createTosuWsSocket()
 socket.onmessage = event => {
     const data = JSON.parse(event.data)
+    console.log(data)
 
     // Team information
     if (currentLeftTeamName !== data.tourney.team.left) {
@@ -75,6 +80,7 @@ socket.onmessage = event => {
         currentChecksum = data.beatmap.checksum
         mapFound = false
 
+        nowPlayingSectionDetailsEl.style.backgroundImage = `url("${location.origin}/Songs/${data.folders.beatmap}/${data.files.background}")`
         nowPlayingSongTitleEl.textContent = data.beatmap.title
         nowPlayingSongArtistEl.textContent = data.beatmap.artist
     
@@ -128,30 +134,6 @@ socket.onmessage = event => {
         })
     }
 
-    // Update scores
-    let currentScoreLeft = 0, currentScoreRight = 0
-    for (let i = 0; i < data.tourney.clients.length; i++) {
-        let currentScore = data.tourney.clients[i].play.score
-        if (currentBeatmap && currentBeatmap.EZMultiplier && data.tourney.clients[i].play.mods.name.includes("EZ")) currentScore *= currentBeatmap.EZMultiplier ?? 1.8
-        if (data.tourney.clients[i].team === "left") currentScoreLeft += currentScore
-        else currentScoreRight += currentScore
-    }
-    animation.scoreLeft.update(currentScoreLeft)
-    animation.scoreRight.update(currentScoreRight)
-    animation.scoreDifferenceNumber.update(Math.abs(currentScoreLeft - currentScoreRight))
-
-    // Update lines
-    // if (currentScoreLeft > currentScoreRight) {
-    //     scoreLineLeftEl.style.display = "block"
-    //     scoreLineRightEl.style.display = "none"
-    // } else if (currentScoreLeft === currentScoreRight) {
-    //     scoreLineLeftEl.style.display = "block"
-    //     scoreLineRightEl.style.display = "block"
-    // } else if (currentScoreLeft < currentScoreRight) {
-    //     scoreLineLeftEl.style.display = "none"
-    //     scoreLineRightEl.style.display = "block"
-    // }
-
     // Score visibility
     if (scoreVisible !== data.tourney.scoreVisible) {
         scoreVisible = data.tourney.scoreVisible
@@ -170,6 +152,60 @@ socket.onmessage = event => {
         //     iframe.style.bottom = "0px"
         // }
     }
+
+    if (scoreVisible) {
+        // Update scores
+        let currentScoreLeft = 0, currentScoreRight = 0
+        for (let i = 0; i < data.tourney.clients.length; i++) {
+            let currentScore = data.tourney.clients[i].play.score
+            if (currentBeatmap && currentBeatmap.EZMultiplier && data.tourney.clients[i].play.mods.name.includes("EZ")) currentScore *= currentBeatmap.EZMultiplier ?? 1.8
+            if (data.tourney.clients[i].team === "left") currentScoreLeft += currentScore
+            else currentScoreRight += currentScore
+        }
+        animation.scoreLeft.update(currentScoreLeft)
+        animation.scoreRight.update(currentScoreRight)
+
+        // Score difference
+        const scoreDifference = Math.abs(currentScoreLeft - currentScoreRight)
+        animation.scoreDifferenceNumber.update(scoreDifference)
+
+        // Score bar width
+        const multiplier = 1
+        const scoreBarMaxWidth = 960
+        let scoreBarDifferencePercent = Math.min(scoreDifference / (450000 * multiplier), 1)
+        let scoreBarRectangleWidth = Math.min(Math.pow(scoreBarDifferencePercent, 0.5) * scoreBarMaxWidth, scoreBarMaxWidth)
+
+        // Score bar
+        if (currentScoreLeft > currentScoreRight) {
+            scoreBarLeftEl.style.width = `${scoreBarRectangleWidth}px`
+            scoreBarRightEl.style.width = "0px"
+
+            scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 - scoreBarDifferencePercent * 120)}deg)`
+        } else if (currentScoreLeft === currentScoreRight) {
+            scoreBarLeftEl.style.width = "0px"
+            scoreBarRightEl.style.width = "0px"
+
+            scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90)}deg)`
+        } else if (currentScoreLeft < currentScoreRight) {
+            scoreBarLeftEl.style.width = "0px"
+            scoreBarRightEl.style.width = `${scoreBarRectangleWidth}px`
+
+            scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 - scoreBarDifferencePercent * 120)}deg)`
+        }
+    }
+
+
+    // Update lines
+    // if (currentScoreLeft > currentScoreRight) {
+    //     scoreLineLeftEl.style.display = "block"
+    //     scoreLineRightEl.style.display = "none"
+    // } else if (currentScoreLeft === currentScoreRight) {
+    //     scoreLineLeftEl.style.display = "block"
+    //     scoreLineRightEl.style.display = "block"
+    // } else if (currentScoreLeft < currentScoreRight) {
+    //     scoreLineLeftEl.style.display = "none"
+    //     scoreLineRightEl.style.display = "block"
+    // }
 }
 
 // Set number stats
