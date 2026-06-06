@@ -28,6 +28,8 @@ module.exports = [
                 URL: "readonly",
                 DOMParser: "readonly",
                 requestAnimationFrame: "readonly",
+                axios: "readonly",
+                CountUp: "readonly"
             },
         },
         rules: {
