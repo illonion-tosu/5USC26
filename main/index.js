@@ -1,3 +1,6 @@
+import { getCookie } from "../_shared/core/utils.js"
+import { createTosuWsSocket } from "../_shared/core/websocket.js"
+
 // Team Inforamtion
 const leftTeamFlagEl= document.getElementById("left-team-flag")
 const rightTeamFlagEl = document.getElementById("right-team-flag")
@@ -187,6 +190,9 @@ socket.onmessage = event => {
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 + scoreBarDifferencePercent * 120)}deg)`
         }
     }
+
+    // Chat Display
+    
 }
 
 // Set number stats
