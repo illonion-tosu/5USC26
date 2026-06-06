@@ -1,3 +1,4 @@
+import { updateChat } from "../_shared/core/chat.js"
 import { getCookie } from "../_shared/core/utils.js"
 import { createTosuWsSocket } from "../_shared/core/websocket.js"
 
@@ -57,8 +58,10 @@ const scoreDialEl = document.getElementById("score-dial")
 const leftTeamStarContainerEl = document.getElementById("left-team-star-container")
 const rightTeamStarContainerEl = document.getElementById("right-team-star-container")
 
-// Chat container
+// Chat stuff
 const chatDisplayEl = document.getElementById("chat-display")
+const chatDisplayContainerEl = document.getElementById("chat-display-container")
+let chatLen = 0
 
 // Socket
 const socket = createTosuWsSocket()
@@ -188,7 +191,13 @@ socket.onmessage = event => {
     }
 
     // Chat Display
-    
+    if (!scoreVisible) {
+        // Chat Display
+        const chatData = data.tourney.chat
+        if (chatLen !== chatData.length) {
+            chatLen = updateChat(chatLen, chatData, chatDisplayContainerEl)
+        }
+    }
 }
 
 // Set number stats
