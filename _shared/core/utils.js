@@ -41,8 +41,8 @@ export function getMods(modNumber) {
   
     // Extract the mod names
     const enabledMods = Object.entries(mods)
-        .filter(([value, _]) => modNumber & value)
-        .map(([_, name]) => name)
+        .filter(([value]) => modNumber & value)
+        .map(([, name]) => name)
 
     return enabledMods
 }

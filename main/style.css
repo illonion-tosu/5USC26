@@ -343,15 +343,12 @@
     left: var(--margin);
     width: calc(100% - var(--margin) * 2);
     height: calc(100% - var(--top) - var(--margin));
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow-y: scroll;
 }
-.chat-display-container::-webkit-scrollbar {
-    display: none;
-}
+.chat-display-container::-webkit-scrollbar { display: none; }
 
 /* ===========================
    Chat Message 
