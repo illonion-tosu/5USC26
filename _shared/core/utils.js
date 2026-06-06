@@ -1,7 +1,7 @@
-const delay = async time => new Promise(resolve => setTimeout(resolve, time));
+export const delay = async time => new Promise(resolve => setTimeout(resolve, time));
 
 // Get Cookie
-function getCookie(cname) {
+export function getCookie(cname) {
     let name = cname + "="
     let ca = document.cookie.split(';')
     for(let i = 0; i < ca.length; i++) {
@@ -12,14 +12,14 @@ function getCookie(cname) {
     return "";
 }
 
-async function getTeams() {
+export async function getTeams() {
     const response = await fetch("../_data/teams.json")
     const responseJson = await response.json()
     let allTeams = responseJson
     return allTeams
 }
 
-function getMods(modNumber) {
+export function getMods(modNumber) {
     const mods = {
         0: "",
         1: "NF",
@@ -41,8 +41,8 @@ function getMods(modNumber) {
   
     // Extract the mod names
     const enabledMods = Object.entries(mods)
-        .filter(([value, name]) => modNumber & value)
-        .map(([value, name]) => name)
+        .filter(([value, _]) => modNumber & value)
+        .map(([_, name]) => name)
 
     return enabledMods
 }

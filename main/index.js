@@ -9,8 +9,6 @@ const rightTeamNameEl = document.getElementById("right-team-name")
 let currentLeftTeamName, currentRightTeamName
 
 // Beatmap information
-const titleEl = document.getElementById("title")
-const roundNameContainerEl = document.getElementById("round-name-container")
 const roundNameEl = document.getElementById("round-name")
 let allBeatmaps
 async function getBeatmaps() {
@@ -24,8 +22,6 @@ const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.bea
 
 // Now Playing Information
 const nowPlayingSectionDetailsEl = document.getElementById("now-playing-section-details")
-const nowPlayingSectionEl = document.getElementById("now-playing-section")
-const nowPlayingTopSectionEl = document.getElementById("now-playing-top-section")
 const nowPlayingSongTitleEl = document.getElementById("now-playing-song-title")
 const nowPlayingSongArtistEl = document.getElementById("now-playing-song-artist")
 // Stats
