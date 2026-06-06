@@ -58,6 +58,9 @@ const scoreDialEl = document.getElementById("score-dial")
 const leftTeamStarContainerEl = document.getElementById("left-team-star-container")
 const rightTeamStarContainerEl = document.getElementById("right-team-star-container")
 
+// Chat container
+const chatDisplayEl = document.getElementById("chat-display")
+
 // Socket
 const socket = createTosuWsSocket()
 socket.onmessage = event => {
@@ -138,19 +141,13 @@ socket.onmessage = event => {
     if (scoreVisible !== data.tourney.scoreVisible) {
         scoreVisible = data.tourney.scoreVisible
 
-        // if (scoreVisible) {
-        //     titleEl.style.top = "237px"
-        //     roundNameContainerEl.style.top = "310px"
-        //     nowPlayingSectionEl.style.top = `calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height))`
-        //     scoresContainerEl.style.top = "0px"
-        //     iframe.style.bottom = "-263px"
-        // } else {
-        //     titleEl.style.top = "257px"
-        //     roundNameContainerEl.style.top = "354px"
-        //     nowPlayingSectionEl.style.top = `calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height)`
-        //     scoresContainerEl.style.top = "-217px"
-        //     iframe.style.bottom = "0px"
-        // }
+        if (scoreVisible) {
+            scoresContainerEl.style.opacity = 1
+            chatDisplayEl.style.opacity = 0
+        } else {
+            scoresContainerEl.style.opacity = 0
+            chatDisplayEl.style.opacity = 1
+        }
     }
 
     if (scoreVisible) {
