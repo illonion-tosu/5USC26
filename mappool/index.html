@@ -10,7 +10,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
-    <script src="../_shared/utils.js"></script>
 </head>
 <body>
     <div class="main">
@@ -31,24 +30,16 @@
         <div class="round-name"><span id="round-name"></span> - <span class="league-name" id="league-name">MAJOR LEAGUE</span></div>
 
         <!-- Tickets -->
-        <img class="ticket ticket-left" src="static/red-ticket.png">
         <div class="ticket-left-section ticket-left-section-left">
-            <div class="border border-ticket top-right-ticket-border"></div>
-            <div class="border border-ticket bottom-right-ticket-border"></div>
+            <div class="ticket-team-name" id="ticket-left-team-name">SOUTHERN CALIFORNIA A</div>
+            <img class="ticket-team-dial" id="ticket-left-team-dial" src="static/red-dial.png">
+            <div class="ticket-team-star-container" id="ticket-team-star-container-left"></div>
         </div>
-        <img class="ticket ticket-right" src="static/blue-ticket.png">
         <div class="ticket-left-section ticket-left-section-right">
-            <div class="border border-ticket top-right-ticket-border"></div>
-            <div class="border border-ticket bottom-right-ticket-border"></div>
+            <div class="ticket-team-name" id="ticket-right-team-name">SOUTHERN CALIFORNIA A</div>
+            <img class="ticket-team-dial" id="ticket-right-team-dial" src="static/blue-dial.png">
+            <div class="ticket-team-star-container" id="ticket-team-star-container-right"></div>
         </div>
-
-        <!-- Team Names -->
-        <div class="team-name team-name-left" id="team-name-left"></div>
-        <div class="team-name team-name-right" id="team-name-right"></div>
-
-        <!-- Stars -->
-        <div class="team-star-container team-star-container-left" id="team-star-container-left"></div>
-        <div class="team-star-container team-star-container-right" id="team-star-container-right"></div>
 
         <!-- Bans -->
         <div class="team-bans-container team-bans-container-left">

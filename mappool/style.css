@@ -10,22 +10,6 @@
 }
 
 /* ===========================
-   Body
-=========================== */
-body {
-    font-family: "Dogica";
-    font-weight: 400;
-}
-
-/* ===========================
-   Video
-=========================== */
-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-/* ===========================
    Main
 =========================== */
 .main { background-image: url("static/background.png"); }
@@ -53,158 +37,71 @@ video {
 }
 
 /* ===========================
-   Tickets
-=========================== */
-.ticket {
-    position: absolute;
-    left: -51px;
-}
-.ticket-left { top: 130px; }
-.ticket-right { top: 518px; }
-/* ===========================
    Ticket Left Section 
 =========================== */
 .ticket-left-section {
     position: absolute;
-    width: 357px;
-    height: 305px;
-    background-color: white;
+    left: 49px;
+    width: 400px;
+    height: 300px;
+    /* background-image: var(--linear-gradient); */
+    border: 4px solid rgb(128 129 131);
     overflow: hidden;
+    border-radius: 15px;
 }
-.ticket-left-section-left { top: 130px; }
-.ticket-left-section-right { top: 518px; }
+.ticket-left-section-left { top: 216px; }
+.ticket-left-section-right { top: 551px; }
+
 /* ===========================
-   Ticket Borders
+   Ticket Team Name
 =========================== */
-.top-right-ticket-border {
-    top: -29px;
-    left: 332px;
-}
-.bottom-right-ticket-border {
-    top: 287px;
-    left: 332px;
+.ticket-team-name {
+    position: absolute;
+    top: 72px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: ProtoMono, sans-serif;
+    width: 100%;
+    font-size: 2.25rem;
+    text-align: center;
+    line-height: 32px;
 }
 
 /* ===========================
-   Team Star Container
+   Ticket Team Star Container
 =========================== */
-.team-star-container {
+.ticket-team-star-container {
     position: absolute;
-    left: 86px;
+    top: 146px;
+    left: 88px;
+    width: 50%;
+    height: 100px;
 }
-.team-star-container-left { top: 247px; }
-.team-star-container-right { top: 635px; }
+
+.ticket-team-dial {
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-180deg);
+    transition: 300ms ease-in-out;
+}
+
 /* ===========================
-   Team Stars
+   Ticket Team Star
 =========================== */
-.team-star-container > * { position: absolute; }
-.team-star-middle {
-    left: 25.5px;
-    top: 19px;
-    transform: translate(50%, 50%);
-    width: 55px;
+.ticket-team-star {
+    --angle: calc(-120deg + (var(--i) * 40deg));
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
-/* ===========================
-   Best of 9
-=========================== */
-.team-star-bo9-1 {
-    left: 27px;
-    top: 0;
-}
-.team-star-bo9-2 {
-    left: 27px;
-    top: 100px;
-}
-.team-star-bo9-3 {
-    left: 96px;
-    top: 100px;
-}
-.team-star-bo9-4 {
-    left: 96px;
-    top: 0px;
-}
-/* ===========================
-   Best of 11
-=========================== */
-.team-star-bo11-1 {
-    left: 27px;
-    top: 0;
-}
-.team-star-bo11-2 {
-    left: 0px;
-    top: 56px;
-}
-.team-star-bo11-3 {
-    left: 62px;
-    top: 109px;
-}
-.team-star-bo11-4 {
-    left: 123px;
-    top: 56px;
-}
-.team-star-bo11-5 {
-    left: 96px;
-    top: 0px;
-}
-/* ===========================
-   Best of 13
-=========================== */
-.team-star-bo13-1 {
-    left: 27px;
-    top: 0;
-}
-.team-star-bo13-2 {
-    left: 0;
-    top: 50px;
-}
-.team-star-bo13-3 {
-    left: 27px;
-    top: 100px;
-}
-.team-star-bo13-4 {
-    left: 96px;
-    top: 100px;
-}
-.team-star-bo13-5 {
-    left: 122px;
-    top: 50px;
-}
-.team-star-bo13-6 {
-    left: 96px;
-    top: 0px;
-}
-/* ===========================
-   Best of 15
-=========================== */
-.team-star-bo15-1 {
-    left: 35px;
-    top: 0;
-}
-.team-star-bo15-2 {
-    left: 0;
-    top: 43px;
-}
-.team-star-bo15-3 {
-    left: 15px;
-    top: 93px;
-}
-.team-star-bo15-4 {
-    left: 78px;
-    top: 115px;
-    transform: translateX(-50%);
-}
-.team-star-bo15-5 {
-    left: 105px;
-    top: 93px;
-}
-.team-star-bo15-6 {
-    left: 122px;
-    top: 43px;
-}
-.team-star-bo15-7 {
-    left: 93px;
-    top: 0px;
-}
+    /* transform:
+        rotate(var(--angle))
+        translateY(-75px)
+        rotate(calc(var(--angle) * -1));
+    /*
+
 /* ===========================
    Team Bans Container
 =========================== */
@@ -220,15 +117,6 @@ video {
 /* ===========================
    Team Bans Borders
 =========================== */
-.border {
-    position: absolute;
-    background-color: #26282C;
-    width: 51px;
-    height: 48px;
-    border-radius: 50%;
-    z-index: 1;  
-}
-.border-ticket { outline: 10px solid white; }
 .border-left { outline: 10px solid var(--ban-container-colour-left); }
 .border-right { outline: 10px solid var(--ban-container-colour-right); }
 .top-left-border {

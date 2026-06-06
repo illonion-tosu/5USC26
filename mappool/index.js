@@ -1,6 +1,8 @@
 // Team star container
-const teamStarContainerLeft = document.getElementById("team-star-container-left")
-const teamStarContainerRight = document.getElementById("team-star-container-right")
+const ticketTeamStarContainerLeftEl = document.getElementById("ticket-team-star-container-left")
+const ticketTeamStarContainerRightEl = document.getElementById("ticket-team-star-container-right")
+const teamStarContainerLeft = document.getElementById("left-team-star-container")
+const teamStarContainerRight = document.getElementById("right-team-star-container")
 
 // Beatmap information
 const roundNameEl = document.getElementById("round-name")
@@ -33,8 +35,10 @@ async function getBeatmaps() {
     document.cookie = `currentStarRight=${currentStarRight}; path=/`
 
     // Append stars
-    teamStarContainerLeft.append(createStars("left", currentStarLeft))
-    teamStarContainerRight.append(createStars("right", currentStarRight))
+    teamStarContainerLeft.append(createStars("left", currentStarLeft, true))
+    teamStarContainerRight.append(createStars("right", currentStarRight, true))
+    ticketTeamStarContainerLeftEl.append(createStars("left", currentStarLeft, false))
+    ticketTeamStarContainerRightEl.append(createStars("left", currentStarRight, false))
 
     // Set round name
     roundNameEl.textContent = roundName
@@ -59,20 +63,33 @@ getBeatmaps()
 const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.beatmap_id) === Number(beatmapId))
 
 // Create stars
-function createStars(side, starCount) {
+function createStars(side, starCount, bigRequired) {
     const fragment = document.createDocumentFragment()
     for (let i = 0; i < currentFirstTo; i++) {
         const isFilled = i < starCount
 
         // Create image
         const image = document.createElement("img")
-        if (i !== currentFirstTo - 1) image.classList.add(`team-star-bo${currentBestOf}-${i + 1}`)
-        else image.classList.add(`team-star-middle`)
-        image.setAttribute("src", `../_shared/assets/points/${i !== currentFirstTo - 1? "small" : "big"}_star_${side}_${isFilled? "fill" : "empty"}.png`)
+        image.classList.add("team-star")
+        image.setAttribute("src", `../_shared/assets/points/${(i !== currentFirstTo - 1 || !bigRequired)? "small" : "big"}_star_${side}_${isFilled? "fill" : "empty"}.png`)
+        
+        // Position the star
+        if (!bigRequired) {
+            image.classList.add("ticket-team-star")
+            image.setAttribute("style", `--i:${i + 1};`)
+
+            const angle = (20 + -20 * currentFirstTo) + (i * 40)
+            image.style.transform = `rotate(${angle}deg) translateY(-75px) rotate(${-angle}deg)`
+        }
+        
         fragment.append(image)
     }
     return fragment
 }
+
+// Team Dials
+const ticketLeftTeamDialEl = document.getElementById("ticket-left-team-dial")
+const ticketRightTeamDialEl = document.getElementById("ticket-right-team-dial")
 
 // Update star count
 const mappoolTileTiebreakerEl = document.getElementById("mappool-container-tiebreaker")
@@ -87,8 +104,10 @@ function updateStarCount(side, action) {
 
     teamStarContainerLeft.innerHTML = ""
     teamStarContainerRight.innerHTML = ""
-    teamStarContainerLeft.append(createStars("left", currentStarLeft))
-    teamStarContainerRight.append(createStars("right", currentStarRight))
+    teamStarContainerLeft.append(createStars("left", currentStarLeft, true))
+    teamStarContainerRight.append(createStars("right", currentStarRight, true))
+    ticketTeamStarContainerLeftEl.append(createStars("left", currentStarLeft, false))
+    ticketTeamStarContainerRightEl.append(createStars("right", currentStarRight, false))
 
     // Setting Tiebreaker Information
     if (currentStarLeft >= currentFirstTo - 1 && currentStarRight >= currentFirstTo - 1) {
@@ -99,6 +118,17 @@ function updateStarCount(side, action) {
         mappoolTileTiebreakerEl.children[0].style.backgroundImage = "none"
         mappoolTileTiebreakerEl.children[1].style.backgroundColor = "#2a2c30"
         mappoolTileTiebreakerEl.children[1].textContent = ""
+    }
+
+    // Spin dial
+    if (side === "left") {
+        const angle = (20 + -20 * currentFirstTo) + ((currentStarLeft - 1) * 40)
+        ticketLeftTeamDialEl.style.transform = `translateX(-50%) rotate(${angle}deg)`
+        if (currentStarLeft === 0) ticketLeftTeamDialEl.style.transform = `translateX(-50%) rotate(-180deg)`
+    } else {
+        const angle = (20 + -20 * currentFirstTo) + ((currentStarRight - 1) * 40)
+        ticketRightTeamDialEl.style.transform = `translateX(-50%) rotate(${angle}deg)`
+        if (currentStarRight === 0) ticketRightTeamDialEl.style.transform = `translateX(-50%) rotate(-180deg)`
     }
 
     document.cookie = `currentFirstTo=${currentFirstTo}; path=/`
@@ -115,11 +145,13 @@ function toggleStars() {
     document.cookie = `isStarToggled=${isStarToggled}; path=/`
     if (!isStarToggled) {
         teamStarContainerLeft.style.display = "none"
+        ticketTeamStarContainerLeftEl.style.display = "none"
         teamStarContainerRight.style.display = "none"
         toggleStarsEl.classList.add("toggle-inactive")
         toggleStarsEl.classList.remove("toggle-active")
     } else {
         teamStarContainerLeft.style.display = "block"
+        ticketTeamStarContainerRightEl.style.display = "block"
         teamStarContainerRight.style.display = "block"
         toggleStarsEl.classList.add("toggle-active")
         toggleStarsEl.classList.remove("toggle-inactive")

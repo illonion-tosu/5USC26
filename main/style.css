@@ -60,13 +60,13 @@
    Now Playing Section
 =========================== */
 .middle-now-playing-section {
-    --side-colour: rgb(162 165 167);
+    
 
     top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height) - var(--middle-now-playing-section-height) - 8px);
     width: 952px;
     height: var(--middle-now-playing-section-height);
     border: 4px solid rgb(128 129 131);
-    background-image: linear-gradient(to right, var(--side-colour), rgb(228 230 232), var(--side-colour));
+    background-image: var(--linear-gradient);
 }
 
 .middle-now-playing-section > *{
