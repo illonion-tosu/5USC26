@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mappool</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
+    <script src="../_shared/utils.js"></script>
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="../_shared/assets/background.mp4">
+    </video>
+    <div class="main">
+        <!-- Top Section -->
+        <img class="logo" src="../_shared/assets/logo.png">
+        <div class="round-name"><span id="round-name"></span> - <span class="league-name" id="league-name">MAJOR LEAGUE</span></div>
+
+        <!-- Tickets -->
+        <img class="ticket ticket-left" src="static/red-ticket.png">
+        <div class="ticket-left-section ticket-left-section-left">
+            <div class="border border-ticket top-right-ticket-border"></div>
+            <div class="border border-ticket bottom-right-ticket-border"></div>
+        </div>
+        <img class="ticket ticket-right" src="static/blue-ticket.png">
+        <div class="ticket-left-section ticket-left-section-right">
+            <div class="border border-ticket top-right-ticket-border"></div>
+            <div class="border border-ticket bottom-right-ticket-border"></div>
+        </div>
+
+        <!-- Team Names -->
+        <div class="team-name team-name-left" id="team-name-left"></div>
+        <div class="team-name team-name-right" id="team-name-right"></div>
+
+        <!-- Stars -->
+        <div class="team-star-container team-star-container-left" id="team-star-container-left"></div>
+        <div class="team-star-container team-star-container-right" id="team-star-container-right"></div>
+
+        <!-- Bans -->
+        <div class="team-bans-container team-bans-container-left">
+            <!-- Borders -->
+            <div class="border border-left top-left-border"></div>
+            <div class="border border-left bottom-left-border"></div>
+            <div class="border border-left top-right-border"></div>
+            <div class="border border-left bottom-right-border"></div>
+            <!-- Ban Images -->
+            <div id="team-ban-image-container-left">
+                <div class="team-ban-image team-ban-image-one">
+                    <div class="team-ban-image-overlay"></div>
+                    <img class="team-ban-icon" src="static/red-ban.png">
+                </div>
+                <div class="team-ban-image team-ban-image-two">
+                    <div class="team-ban-image-overlay"></div>
+                    <img class="team-ban-icon" src="static/red-ban.png">
+                </div>
+            </div>
+            <!-- Ban Texts -->
+            <div class="team-ban-text-container team-ban-text-container-left" id="team-ban-text-container-left">
+                <div class="team-ban-text"></div>
+                <div class="team-ban-text"></div>
+            </div>
+        </div>
+        <div class="team-bans-container team-bans-container-right">
+            <!-- Borders -->
+            <div class="border border-right top-left-border"></div>
+            <div class="border border-right bottom-left-border"></div>
+            <div class="border border-right top-right-border"></div>
+            <div class="border border-right bottom-right-border"></div>
+            <!-- Ban Images -->
+            <div id="team-ban-image-container-right">
+                <div class="team-ban-image team-ban-image-one">
+                    <div class="team-ban-image-overlay"></div>
+                    <img class="team-ban-icon" src="static/blue-ban.png">
+                </div>
+                <div class="team-ban-image team-ban-image-two">
+                    <div class="team-ban-image-overlay"></div>
+                    <img class="team-ban-icon" src="static/blue-ban.png">
+                </div>
+            </div>
+            <!-- Ban Texts -->
+            <div class="team-ban-text-container team-ban-text-container-right" id="team-ban-text-container-right">
+                <div class="team-ban-text"></div>
+                <div class="team-ban-text"></div>
+            </div>
+        </div>
+
+        <!-- Mappool Container -->
+        <div class="mappool-container">
+            <div class="mappool-container-main">
+                <div class="mappool-mini-container" id="mappool-container-left">
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                </div>
+                <div class="mappool-mini-container" id="mappool-container-right">
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                    <div class="mappool-container-tile">
+                        <div class="mappool-container-tile-background">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="mappool-container-tile-bottom"></div>
+                        <img class="crown" src="static/red-crown.png">
+                    </div>
+                </div>
+            </div>
+            <div class="mappool-container-tiebreaker" id="mappool-container-tiebreaker">
+                <div class="mappool-container-tile-tiebreaker">
+                    <div class="overlay"></div>
+                </div>
+                <div class="mappool-container-tile-bottom mappool-container-tiebreaker-bottom"></div>
+                <img class="crown" src="static/red-crown.png">
+            </div>
+        </div>
+
+        <!-- Current Picker -->
+        <img class="current-picker" id="current-picker" src="static/blue-team-picking.png">
+
+        <!-- Iframe for Bottom Section -->
+        <iframe id="iframe" src="../iframes/bottom-section/"></iframe>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="column">
+            <section class="sidebar-section">
+                <h1>Star Control</h1>
+                <div class="sidebar-button-container">
+                    <button onclick="updateStarCount('left','minus')">RED --</button>
+                    <button onclick="updateStarCount('left','plus')">RED ++</button>
+                    <button onclick="updateStarCount('right','minus')">BLUE --</button>
+                    <button onclick="updateStarCount('right','plus')">BLUE ++</button>
+                    <button class="full-width-button toggle-active" id="toggle-stars" onclick="toggleStars()">TOGGLE STARS: ON</button>
+                </div>
+            </section>
+            <section class="sidebar-section">
+                <h1>Next Picker</h1>
+                <p id="next-picker" style="font-size: 1.2em;"></p>
+                <div class="sidebar-button-container">
+                    <button onclick="setNextPicker('left')">RED</button>
+                    <button onclick="setNextPicker('right')">BLUE</button>
+                    <button class="full-width-button" id="next-picker-none" onclick="setNextPicker('none')">NO ONE</button>
+                    <button class="full-width-button toggle-inactive" id="toggle-autopick" onclick="toggleAutopick()">TOGGLE AUTOPICK: OFF</button>
+                </div>
+            </section>
+            <section class="sidebar-section">
+                <h1>League Select</h1>
+                <div class="sidebar-button-container">
+                    <button onclick="setLeague('major')" id="major-league-button" class="toggle-active">MAJOR</button>
+                    <button onclick="setLeague('minor')" id="minor-league-button">MINOR</button>
+                </div>
+            </section>
+        </div>
+        <div class="divider divider-1"></div>
+        <div class="column column-2">
+            <section class="sidebar-section">
+                <h1>Mappool Management</h1>
+                <p>
+                    Left Click (LC) = Red Pick<br><br>
+                    Right Click (RC) = Blue Pick<br><br>
+                    Ctrl + LC = Red Ban<br><br>
+                    Ctrl + RC = Blue Ban
+                </p>
+                <div class="sidebar-button-container" id="mappool-management-maps" style="margin-bottom: 10px;"></div>
+            </section>
+        </div>
+        <div class="divider divider-2"></div>
+        <div class="column column-3">
+            <section class="sidebar-section" id="mappool-override-column">
+                <h1>Mappool Override Management</h1>
+                <h2>Which Action?</h2>
+                <select class="mappool-override-select" id="mappool-override-action-select" size="6" onchange="mappoolOverrideChangeAction()">
+                    <option value="setBan">Set Ban</option>
+                    <option value="removeBan">Remove Ban</option>
+                    <option value="setPick">Set Pick</option>
+                    <option value="removePick">Remove Pick</option>
+                    <option value="setWinner">Set Winner</option>
+                    <option value="removeWinner">Remove Winner</option>
+                </select>
+            </section>
+        </div>
+        <div class="divider divider-3"></div>
+        <div class="column column-4">
+            <section class="sidebar-section">
+                <h1>Scene Management</h1>
+                <div class="sidebar-button-container">
+                    <button id="auto-advance-button" class="toggle-inactive full-width-button" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF</button>
+                </div>
+                <h2>Scenes<br>(click to override)</h2>
+                <div class="sidebar-button-container" id="sceneCollection">
+                    <template id="sceneButtonTemplate">
+                        <button class="full-width-button">SWITCH TO __SCENE_NAME__</button>
+                    </template>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
