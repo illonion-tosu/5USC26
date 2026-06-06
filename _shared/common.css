@@ -1,0 +1,85 @@
+@font-face {
+    font-family: ProtoMono;
+    font-weight: 400;
+    src: url("../fonts/ProtoMono-Regular.woff2")
+}
+
+@font-face {
+    font-family: SnowyDays;
+    src: url("../fonts/Snowy\ Days.ttf")
+}
+
+:root {
+    --team-flag-horizontal-alignment: 37px;
+    --team-details-horizontal-alignment: 192px;
+}
+
+/* ===========================
+   Main
+=========================== */
+.main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    background: center / cover;
+    background-image: url("static/background.png")
+}
+
+/* ===========================
+   Team Flag
+=========================== */
+.team-flag {
+    position: absolute;
+    top: 43px;
+    height: 82px;
+    width: 134px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+.left-team-flag { left: var(--team-flag-horizontal-alignment); }
+.right-team-flag { right: var(--team-flag-horizontal-alignment); }
+
+/* ===========================
+   Team Name
+=========================== */
+.team-name {
+    position: absolute;
+    top: 29px;
+    font-family: ProtoMono, sans-serif;
+    font-weight: 400;
+    color: white;
+    font-size: 37px;
+}
+.left-team-name { left: var(--team-details-horizontal-alignment); }
+.right-team-name { right: var(--team-details-horizontal-alignment); }
+
+/* ===========================
+   Team Stars Container 
+=========================== */
+.team-star-container {
+    position: absolute;
+    top: 89px;
+    display: flex;
+    height: 37px;
+    gap: 18px;
+}
+
+.left-team-star-container { left: var(--team-details-horizontal-alignment); }
+
+.right-team-star-container {
+    right: var(--team-details-horizontal-alignment);
+    flex-direction: row-reverse;
+}
+
+/* ===========================
+   Team Stars
+=========================== */
+.team-star {
+    display: flex;
+    align-items: center;
+}
+.team-star:nth-child(odd) { align-items: flex-end; }
+.team-star:nth-child(even) { align-items: flex-start; }
+.team-star-end { align-items: flex-start !important; }

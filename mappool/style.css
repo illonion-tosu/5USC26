@@ -9,17 +9,6 @@
     --mappool-container-tile-width: 132.14px;
 }
 
-@font-face {
-    font-family: "Dogica";
-    src: url("../font/dogica.woff2");
-    font-weight: 400;
-}
-@font-face {
-    font-family: "Dogica";
-    src: url("../font/dogicabold.woff2");
-    font-weight: 700;
-}
-
 /* ===========================
    Body
 =========================== */
@@ -39,16 +28,7 @@ video {
 /* ===========================
    Main
 =========================== */
-.main {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1920px;
-    height: 1080px;
-    background-image: url("static/background.png");
-    background-size: cover;
-    background-position: center;
-}
+.main { background-image: url("static/background.png"); }
 
 /* ===========================
    Logo
@@ -104,20 +84,6 @@ video {
     top: 287px;
     left: 332px;
 }
-
-/* ===========================
-   Team Names
-=========================== */
-.team-name {
-    position: absolute;
-    font-size: 27px;
-    text-align: center;
-    width: 352px;
-    line-height: 28px;
-    transform: translateY(-50%);
-}
-.team-name-left { top: 200px; }
-.team-name-right { top: 588px; }
 
 /* ===========================
    Team Star Container
