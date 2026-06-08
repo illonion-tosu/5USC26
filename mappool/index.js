@@ -57,10 +57,54 @@ async function getBeatmaps() {
     // Set beatmap id
     mappoolTileTiebreakerEl.dataset.id = allBeatmaps[allBeatmaps.length - 1].beatmap_id
     mappoolTileTiebreakerEl.setAttribute("id", allBeatmaps[allBeatmaps.length - 1].beatmap_id)
+
+    // Create Map Tiles
+    for (let i = 0; i < currentFirstTo - 1; i++) {
+        mappoolContainerLeftEl.append(createMappoolContainerTile("red"))
+        mappoolContainerRightEl.append(createMappoolContainerTile("blue"))
+    }
+
+    // Edit Map Tile Width
+    let width = (1274 - (30 * (currentFirstTo - 1))) / currentFirstTo
+    for (const sheet of document.styleSheets) {
+        for (const rule of sheet.cssRules) {
+            if (rule.selectorText === ".mappool-container-tile" || rule.selectorText === ".mappool-container-tiebreaker") {
+                rule.style.width = `${width}px`
+            }
+        }
+    }
 }
 getBeatmaps()
 // Find Beatmaps
 const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.beatmap_id) === Number(beatmapId))
+
+// Create Mappool Container Tile
+function createMappoolContainerTile(side) {
+    // Mappool Container Tile
+    const mappoolContainerTile = document.createElement("div")
+    mappoolContainerTile.classList.add("mappool-container-tile")
+
+    // Mappool Container Tile Background
+    const mappoolContainerTileBackground = document.createElement("div")
+    mappoolContainerTileBackground.classList.add("mappool-container-tile-background")
+    
+    // Overlay
+    const overlay = document.createElement("div")
+    overlay.classList.add("overlay")
+    mappoolContainerTileBackground.append(overlay)
+
+    // Mappool Container Tile Bottom
+    const mappoolContainerTileBottom = document.createElement("div")
+    mappoolContainerTileBottom.classList.add("mappool-container-tile-bottom")
+
+    // Crown
+    const crown = document.createElement("img")
+    crown.classList.add("crown")
+    crown.setAttribute("src", `static/${side}-crown.png`)
+
+    mappoolContainerTile.append(mappoolContainerTileBackground, mappoolContainerTileBottom, crown)
+    return mappoolContainerTile
+}
 
 // Create stars
 function createStars(side, starCount, bigRequired) {

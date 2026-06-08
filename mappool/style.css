@@ -7,7 +7,7 @@
     --ban-container-colour-left: #D91B5D;
     --ban-container-colour-right: #6BCDEA;
     --ban-container-background: #272626;
-    --mappool-container-tile-width: 132.14px;
+    --mappool-container-gap: 15px;
 }
 
 /* ===========================
@@ -256,10 +256,10 @@
 =========================== */
 .mappool-container {
     position: absolute;
-    top: 119px;
-    left: 599px;
+    top: 215px;
+    left: 715px;
     display: flex;
-    gap: 30px;
+    gap: var(--mappool-container-gap);
     width: 1274px;
 }
 
@@ -269,12 +269,12 @@
 .mappool-container-main {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 24px;
 }
 
 .mappool-mini-container {
     display: flex;
-    gap: 30px;
+    gap: var(--mappool-container-gap);
 }
 
 /* ===========================
@@ -282,19 +282,17 @@
 =========================== */
 .mappool-container-tile {
     position: relative;
-    width: var(--mappool-container-tile-width);
-    height: 337px;
+    height: 310px;
     border-radius: 12px;
-    background-color: #2a2c30;
+    background-color: #414042;
     overflow: hidden;
 }
 
 .mappool-container-tiebreaker {
     position: relative;
-    width: var(--mappool-container-tile-width);
-    height: 724px;
+    height: 644px;
     border-radius: 12px;
-    background-color: #2a2c30;
+    background-color: #414042;
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -367,29 +365,6 @@
 }
 
 /* ===========================
-    Current Picker
-=========================== */
-.current-picker {
-    position: absolute;
-    left: 50%;
-    top: 468px;
-    transform: translateX(-50%);
-    transition: 500ms ease-in-out;
-}
-
-/* ===========================
-    Iframe
-=========================== */
-iframe {
-    position: absolute;
-    bottom: 0;
-    width: 1920px;
-    height: 215px;
-    transition: 500ms ease-in-out;
-    border: none;
-}
-
-/* ===========================
     Sidebar
 =========================== */
 .sidebar {
@@ -400,6 +375,7 @@ iframe {
     height: 1080px;
     background-color: #26272B;
 }
+
 /* ===========================
     Column
 =========================== */
