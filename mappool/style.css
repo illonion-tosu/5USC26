@@ -542,3 +542,21 @@ button {
 
 .now-playing-section-details { width: 696px; }
 .now-playing-metadata { width: 285px; }
+
+/* ===========================
+   Chat Display
+=========================== */
+.chat-display { top: 880px; }
+
+.chat-display-title {
+    left: unset;
+    right: 299.5px;
+    transform: unset;
+}
+
+.chat-display-border {
+    right: 45px;
+    left: unset;
+    transform: unset;
+    width: 875px;
+}
