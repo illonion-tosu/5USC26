@@ -525,3 +525,25 @@ button {
     font-size: 0.8em;
     line-height: 15px;
 }
+
+/* ===========================
+   Middle Section
+=========================== */
+.middle-section {
+    position: absolute;
+    left: 49px;
+    bottom: 34px;
+}
+
+.middle-now-playing-section {
+    width: 875px;
+    height: 145px;
+}
+
+.now-playing-section-details {
+    width: 696px;
+}
+
+.now-playing-metadata {
+    width: 285px;
+}
