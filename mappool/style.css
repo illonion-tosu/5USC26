@@ -540,10 +540,5 @@ button {
     height: 145px;
 }
 
-.now-playing-section-details {
-    width: 696px;
-}
-
-.now-playing-metadata {
-    width: 285px;
-}
+.now-playing-section-details { width: 696px; }
+.now-playing-metadata { width: 285px; }

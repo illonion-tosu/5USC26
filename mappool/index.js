@@ -1,3 +1,4 @@
+import { setLengthDisplay } from "../_shared/core/utils.js"
 import { createTosuWsSocket } from "../_shared/core/websocket.js"
 
 // Team star container
@@ -346,6 +347,21 @@ let currentId, currentChecksum, currentMappoolBeatmap, currentPickedTile
 // Current Picker
 const currentPickerEl = document.getElementById("current-picker")
 
+// Now Playing Information
+const nowPlayingSectionDetailsEl = document.getElementById("now-playing-section-details")
+const nowPlayingSongTitleEl = document.getElementById("now-playing-song-title")
+const nowPlayingSongArtistEl = document.getElementById("now-playing-song-artist")
+// Stats
+const statsSrEl = document.getElementById("stats-sr")
+const statsLengthEl = document.getElementById("stats-length")
+const statsArEl = document.getElementById("stats-ar")
+const statsHpEl = document.getElementById("stats-hp")
+const statsBpmEl = document.getElementById("stats-bpm")
+const statsCsEl = document.getElementById("stats-cs")
+const statsOdEl = document.getElementById("stats-od")
+// Variables
+// let currentId, currentChecksum, mapFound = false, currentMappoolBeatmap
+
 // Socket
 const socket = createTosuWsSocket()
 socket.onmessage = event => {
@@ -373,6 +389,11 @@ socket.onmessage = event => {
         currentChecksum = data.beatmap.checksum
         currentMappoolBeatmap = findBeatmaps(currentId)
 
+        // Set Now Playing Metadata
+        nowPlayingSectionDetailsEl.style.backgroundImage = `url("${location.origin}/Songs/${data.folders.beatmap}/${data.files.background}")`
+        nowPlayingSongTitleEl.textContent = data.beatmap.title
+        nowPlayingSongArtistEl.textContent = data.beatmap.artist
+
         // Find element
         const element = document.getElementById(currentId)
         
@@ -391,6 +412,54 @@ socket.onmessage = event => {
             if (currentNextPicker === "left") setNextPicker("right")
             else if (currentNextPicker === "right") setNextPicker("left")
         }
+
+        // Setting stats for found maps
+        if (currentMappoolBeatmap) {
+            let sr = Math.round(Number(currentMappoolBeatmap.difficultyrating) * 100) / 100
+            let len = Number(currentMappoolBeatmap.total_length)
+            let ar = Math.round(Number(currentMappoolBeatmap.diff_approach) * 10) / 10
+            let hp = Math.round(Number(currentMappoolBeatmap.diff_drain) * 10) / 10
+            let bpm = Math.round(Number(currentMappoolBeatmap.bpm) * 10) / 10
+            let cs = Math.round(Number(currentMappoolBeatmap.diff_size) * 10) / 10
+            let od = Math.round(Number(currentMappoolBeatmap.diff_overall) * 10) / 10
+
+            // Add mods
+            if (currentMappoolBeatmap.mod.includes("HR")) {
+                cs = Math.min(Math.round(cs * 1.3 * 10) / 10, 10)
+                ar = Math.min(Math.round(ar * 1.4 * 10) / 10, 10)
+                hp = Math.min(Math.round(hp * 1.4 * 10) / 10, 10)
+                od = Math.min(Math.round(od * 1.4 * 10) / 10, 10)
+            }
+            if (currentMappoolBeatmap.mod.includes("DT")) {
+                if (ar > 5) ar = Math.round((((1200 - (( 1200 - (ar - 5) * 150) * 2 / 3)) / 150) + 5) * 10) / 10
+                else ar = Math.round((1800 - ((1800 - ar * 120) * 2 / 3)) / 120 * 10) / 10
+                od = Math.round((79.5 - (( 79.5 - 6 * od) * 2 / 3)) / 6 * 10) / 10
+                bpm = Math.round(bpm * 1.5)
+                len = Math.round(len / 1.5)
+            }
+
+            setStats({
+                sr: sr,
+                len: len,
+                ar: ar,
+                hp: hp,
+                bpm: bpm,
+                cs: cs,
+                od: od
+            })
+        }
+    }
+
+    if (!currentMappoolBeatmap) {
+        setStats({
+            sr: data.beatmap.stats.stars.total,
+            len: Math.round((data.beatmap.time.lastObject - data.beatmap.time.firstObject) / 1000),
+            ar: data.beatmap.stats.ar.converted,
+            hp: data.beatmap.stats.hp.converted,
+            bpm: data.beatmap.stats.bpm.common,
+            cs: data.beatmap.stats.cs.converted,
+            od: data.beatmap.stats.od.converted
+        })
     }
 
     // Set current scores
@@ -846,4 +915,15 @@ window.onload = () => {
     minorLeagueButtonEl.addEventListener("click", () => setLeague("minor"))
     mappoolOverrideActionSelectEl.addEventListener("click", () => mappoolOverrideChangeAction)
     autoadvance_button.addEventListener("click", () => switchAutoAdvance)
+}
+
+// Set number stats
+function setStats({sr, len, ar, hp, bpm, cs, od}) {
+    statsSrEl.textContent = `${sr.toFixed(2)}*`
+    statsLengthEl.textContent = setLengthDisplay(len)
+    statsArEl.textContent = ar.toFixed(1)
+    statsHpEl.textContent = hp.toFixed(1)
+    statsBpmEl.textContent = Math.round(bpm)
+    statsCsEl.textContent = cs.toFixed(1)
+    statsOdEl.textContent = od.toFixed(1)
 }
