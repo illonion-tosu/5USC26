@@ -1,3 +1,5 @@
+import { createTosuWsSocket } from "../_shared/core/websocket.js"
+
 // Team star container
 const ticketTeamStarContainerLeftEl = document.getElementById("ticket-team-star-container-left")
 const ticketTeamStarContainerRightEl = document.getElementById("ticket-team-star-container-right")
@@ -305,8 +307,10 @@ function setWinner(tile, teamWinner, teamLoser) {
 }
 
 // Team Inforamtion
-const leftTeamNameEl= document.getElementById("team-name-left")
-const rightTeamNameEl = document.getElementById("team-name-right")
+const leftTeamNameEl= document.getElementById("left-team-name")
+const rightTeamNameEl = document.getElementById("right-team-name")
+const ticketLeftTeamNameEl = document.getElementById("ticket-left-team-name")
+const ticketRightTeamNameEl = document.getElementById("ticket-right-team-name")
 let currentLeftTeamName, currentRightTeamName
 
 // Set scores
@@ -329,12 +333,16 @@ socket.onmessage = event => {
     // Team information
     if (currentLeftTeamName !== data.tourney.team.left) {
         currentLeftTeamName = data.tourney.team.left
-        leftTeamNameEl.textContent = currentLeftTeamName.toUpperCase()
+        const uppercaseName = currentLeftTeamName.toUpperCase()
+        leftTeamNameEl.textContent = uppercaseName
+        ticketLeftTeamNameEl.textContent = uppercaseName
         document.cookie = `currentLeftTeamName=${currentLeftTeamName}; path=/`
     }
     if (currentRightTeamName !== data.tourney.team.right) {
         currentRightTeamName = data.tourney.team.right
-        rightTeamNameEl.textContent = currentRightTeamName.toUpperCase()
+        const uppercaseName = currentRightTeamName.toUpperCase()
+        rightTeamNameEl.textContent = uppercaseName
+        ticketRightTeamNameEl.textContent = uppercaseName
         document.cookie = `currentRightTeamName=${currentRightTeamName}; path=/`
     }
 
@@ -438,32 +446,32 @@ socket.onmessage = event => {
     }
 
     // Set current picker
-    const mapCheck = !!(
-        mappoolContainerLeftEl.querySelector(`[data-id="${currentId}"]`) ||
-        mappoolContainerRightEl.querySelector(`[data-id="${currentId}"]`)
-    )
-    if (mapCheck) {
-        currentPickerEl.style.display = "block"
-        let element, index, parent
-        if (mappoolContainerLeftEl.querySelector(`[data-id="${currentId}"]`)) {
-            parent = mappoolContainerLeftEl
-            element = parent.querySelector(`[data-id="${currentId}"]`)
-            currentPickerEl.setAttribute("src", "static/red-team-picking.png")
-        } else {
-            parent = mappoolContainerRightEl
-            element = parent.querySelector(`[data-id="${currentId}"]`)
-            currentPickerEl.setAttribute("src", "static/blue-team-picking.png")
-        }
+    // const mapCheck = !!(
+    //     mappoolContainerLeftEl.querySelector(`[data-id="${currentId}"]`) ||
+    //     mappoolContainerRightEl.querySelector(`[data-id="${currentId}"]`)
+    // )
+    // if (mapCheck) {
+    //     currentPickerEl.style.display = "block"
+    //     let element, index, parent
+    //     if (mappoolContainerLeftEl.querySelector(`[data-id="${currentId}"]`)) {
+    //         parent = mappoolContainerLeftEl
+    //         element = parent.querySelector(`[data-id="${currentId}"]`)
+    //         currentPickerEl.setAttribute("src", "static/red-team-picking.png")
+    //     } else {
+    //         parent = mappoolContainerRightEl
+    //         element = parent.querySelector(`[data-id="${currentId}"]`)
+    //         currentPickerEl.setAttribute("src", "static/blue-team-picking.png")
+    //     }
 
-        // Get index of element
-        index = Array.from(parent.children).indexOf(element)
+    //     // Get index of element
+    //     index = Array.from(parent.children).indexOf(element)
 
-        // Set horizontal alignment
-        const widthOfTile = parent.children[0].getBoundingClientRect().width
-        currentPickerEl.style.left = `${599 + index * (widthOfTile + 35) + widthOfTile / 2}px`
-    } else {
-        currentPickerEl.style.display = "none"
-    }
+    //     // Set horizontal alignment
+    //     const widthOfTile = parent.children[0].getBoundingClientRect().width
+    //     currentPickerEl.style.left = `${599 + index * (widthOfTile + 35) + widthOfTile / 2}px`
+    // } else {
+    //     currentPickerEl.style.display = "none"
+    // }
 }
 
 // Toggle Autopick

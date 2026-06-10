@@ -30,11 +30,12 @@
 =========================== */
 .round-name {
     position: absolute;
-    top: 65.5px;
-    right: 49px;
-    transform: translateY(-50%);
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     font-size: 1.5em;
+    font-family: ProtoMono, sans-serif;
 }
 
 /* ===========================
