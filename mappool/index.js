@@ -1,3 +1,4 @@
+import { updateChat } from "../_shared/core/chat.js"
 import { setLengthDisplay } from "../_shared/core/utils.js"
 import { createTosuWsSocket } from "../_shared/core/websocket.js"
 
@@ -359,8 +360,10 @@ const statsHpEl = document.getElementById("stats-hp")
 const statsBpmEl = document.getElementById("stats-bpm")
 const statsCsEl = document.getElementById("stats-cs")
 const statsOdEl = document.getElementById("stats-od")
-// Variables
-// let currentId, currentChecksum, mapFound = false, currentMappoolBeatmap
+
+// Chat stuff
+const chatDisplayContainerEl = document.getElementById("chat-display-container")
+let chatLen = 0
 
 // Socket
 const socket = createTosuWsSocket()
@@ -533,6 +536,12 @@ socket.onmessage = event => {
         }
 
         previousIpcState = currentIpcState
+
+        // Chat Display
+        const chatData = data.tourney.chat
+        if (chatLen !== chatData.length) {
+            chatLen = updateChat(chatLen, chatData, chatDisplayContainerEl)
+        }
     }
 
     // Set current picker
