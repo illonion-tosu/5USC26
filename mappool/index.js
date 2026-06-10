@@ -801,3 +801,28 @@ window.addEventListener('obsSceneChanged', function(event) {
     for (const scene of sceneCollection.children) { scene.classList.remove("toggle-active") }
     activeButton.classList.add("toggle-active")
 })
+
+const updateStarCountLeftMinusEl = document.getElementById("update-star-count-left-minus")
+const updateStarCountLeftPlusEl = document.getElementById("update-star-count-left-plus")
+const updateStarCountRightMinusEl = document.getElementById("update-star-count-right-minus")
+const updateStarCountRightPlusEl = document.getElementById("update-star-count-right-plus")
+const setNextPickerLeftEl = document.getElementById("set-next-picker-left")
+const setNextPickerRightEl = document.getElementById("set-next-picker-right")
+const nextPickerNoneEl = document.getElementById("next-picker-none")
+
+// Windows
+window.onload = () => {
+    updateStarCountLeftMinusEl.addEventListener("click", () => updateStarCount('left','minus'))
+    updateStarCountLeftPlusEl.addEventListener("click", () => updateStarCount('left','plus'))
+    updateStarCountRightMinusEl.addEventListener("click", () => updateStarCount('right','minus'))
+    updateStarCountRightPlusEl.addEventListener("click", () => updateStarCount('right','plus'))
+    toggleStarsEl.addEventListener("click", () => toggleStars)
+    setNextPickerLeftEl.addEventListener("click", () => setNextPicker("left"))
+    setNextPickerRightEl.addEventListener("click", () => setNextPicker("right"))
+    nextPickerNoneEl.addEventListener("click", () => setNextPicker("none"))
+    toggleAutopickEl.addEventListener("click", () => toggleAutopick)
+    majorLeagueButtonEl.addEventListener("click", () => setLeague("major"))
+    minorLeagueButtonEl.addEventListener("click", () => setLeague("minor"))
+    mappoolOverrideActionSelectEl.addEventListener("click", () => mappoolOverrideChangeAction)
+    autoadvance_button.addEventListener("click", () => switchAutoAdvance)
+}

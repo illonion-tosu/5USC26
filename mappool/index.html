@@ -93,28 +93,28 @@
             <section class="sidebar-section">
                 <h1>Star Control</h1>
                 <div class="sidebar-button-container">
-                    <button onclick="updateStarCount('left','minus')">RED --</button>
-                    <button onclick="updateStarCount('left','plus')">RED ++</button>
-                    <button onclick="updateStarCount('right','minus')">BLUE --</button>
-                    <button onclick="updateStarCount('right','plus')">BLUE ++</button>
-                    <button class="full-width-button toggle-active" id="toggle-stars" onclick="toggleStars()">TOGGLE STARS: ON</button>
+                    <button id="update-star-count-left-minus">RED --</button>
+                    <button id="update-star-count-left-plus">RED ++</button>
+                    <button id="update-star-count-right-minus">BLUE --</button>
+                    <button id="update-star-count-right-plus">BLUE ++</button>
+                    <button class="full-width-button toggle-active" id="toggle-stars">TOGGLE STARS: ON</button>
                 </div>
             </section>
             <section class="sidebar-section">
                 <h1>Next Picker</h1>
                 <p id="next-picker" style="font-size: 1.2em;"></p>
                 <div class="sidebar-button-container">
-                    <button onclick="setNextPicker('left')">RED</button>
-                    <button onclick="setNextPicker('right')">BLUE</button>
-                    <button class="full-width-button" id="next-picker-none" onclick="setNextPicker('none')">NO ONE</button>
-                    <button class="full-width-button toggle-inactive" id="toggle-autopick" onclick="toggleAutopick()">TOGGLE AUTOPICK: OFF</button>
+                    <button id="set-next-picker-left">RED</button>
+                    <button id="set-next-picker-right">BLUE</button>
+                    <button class="full-width-button" id="next-picker-none">NO ONE</button>
+                    <button class="full-width-button toggle-inactive" id="toggle-autopick">TOGGLE AUTOPICK: OFF</button>
                 </div>
             </section>
             <section class="sidebar-section">
                 <h1>League Select</h1>
                 <div class="sidebar-button-container">
-                    <button onclick="setLeague('major')" id="major-league-button" class="toggle-active">MAJOR</button>
-                    <button onclick="setLeague('minor')" id="minor-league-button">MINOR</button>
+                    <button id="major-league-button" class="toggle-active">MAJOR</button>
+                    <button id="minor-league-button">MINOR</button>
                 </div>
             </section>
         </div>
@@ -136,7 +136,7 @@
             <section class="sidebar-section" id="mappool-override-column">
                 <h1>Mappool Override Management</h1>
                 <h2>Which Action?</h2>
-                <select class="mappool-override-select" id="mappool-override-action-select" size="6" onchange="mappoolOverrideChangeAction()">
+                <select class="mappool-override-select" id="mappool-override-action-select" size="6">
                     <option value="setBan">Set Ban</option>
                     <option value="removeBan">Remove Ban</option>
                     <option value="setPick">Set Pick</option>
@@ -151,7 +151,7 @@
             <section class="sidebar-section">
                 <h1>Scene Management</h1>
                 <div class="sidebar-button-container">
-                    <button id="auto-advance-button" class="toggle-inactive full-width-button" onclick="switchAutoAdvance()">AUTO ADVANCE: OFF</button>
+                    <button id="auto-advance-button" class="toggle-inactive full-width-button">AUTO ADVANCE: OFF</button>
                 </div>
                 <h2>Scenes<br>(click to override)</h2>
                 <div class="sidebar-button-container" id="sceneCollection">
