@@ -39,8 +39,8 @@ async function getBeatmaps() {
     // Append stars
     teamStarContainerLeft.append(createStars("left", currentStarLeft, true))
     teamStarContainerRight.append(createStars("right", currentStarRight, true))
-    ticketTeamStarContainerLeftEl.append(createStars("left", currentStarLeft, false))
-    ticketTeamStarContainerRightEl.append(createStars("left", currentStarRight, false))
+    ticketTeamStarContainerLeftEl.append(createTicketStars("left", currentStarLeft))
+    ticketTeamStarContainerRightEl.append(createTicketStars("left", currentStarRight))
 
     // Set round name
     roundNameEl.textContent = roundName
@@ -109,7 +109,7 @@ function createMappoolContainerTile(side) {
 }
 
 // Create stars
-function createStars(side, starCount, bigRequired) {
+function createTicketStars(side, starCount) {
     const fragment = document.createDocumentFragment()
     for (let i = 0; i < currentFirstTo; i++) {
         const isFilled = i < starCount
@@ -117,19 +117,40 @@ function createStars(side, starCount, bigRequired) {
         // Create image
         const image = document.createElement("img")
         image.classList.add("team-star")
-        image.setAttribute("src", `../_shared/assets/points/${(i !== currentFirstTo - 1 || !bigRequired)? "small" : "big"}_star_${side}_${isFilled? "fill" : "empty"}.png`)
+        image.setAttribute("src", `../_shared/assets/points/small_star_${side}_${isFilled? "fill" : "empty"}.png`)
         
         // Position the star
-        if (!bigRequired) {
-            image.classList.add("ticket-team-star")
-            image.setAttribute("style", `--i:${i + 1};`)
+        image.classList.add("ticket-team-star")
+        image.setAttribute("style", `--i:${i + 1};`)
 
-            const angle = (20 + -20 * currentFirstTo) + (i * 40)
-            image.style.transform = `rotate(${angle}deg) translateY(-75px) rotate(${-angle}deg)`
-        }
+        const angle = (20 + -20 * currentFirstTo) + (i * 40)
+        image.style.transform = `rotate(${angle}deg) translateY(-75px) rotate(${-angle}deg)`
         
         fragment.append(image)
     }
+    return fragment
+}
+
+// Create Stars
+function createStars(side) {
+    const fragment = document.createDocumentFragment()
+    for (let i = 0; i < currentFirstTo; i++) {
+        const currentStarCount = side === "left" ? currentStarLeft : currentStarRight
+        fragment.append(createStar(i, side, `${i < currentStarCount ? "fill" : "empty"}`))
+    }
+
+    // Create star
+    function createStar(index, side, attr) {
+        const teamStar = document.createElement("div")
+        teamStar.classList.add("team-star")
+
+        const image = document.createElement("img")
+        image.setAttribute("src", `../_shared/assets/points/${index === currentFirstTo - 1 ? "big" : "small"}_star_${side}_${attr}.png`)
+
+        teamStar.append(image)
+        return teamStar
+    }
+
     return fragment
 }
 
@@ -152,8 +173,8 @@ function updateStarCount(side, action) {
     teamStarContainerRight.innerHTML = ""
     teamStarContainerLeft.append(createStars("left", currentStarLeft, true))
     teamStarContainerRight.append(createStars("right", currentStarRight, true))
-    ticketTeamStarContainerLeftEl.append(createStars("left", currentStarLeft, false))
-    ticketTeamStarContainerRightEl.append(createStars("right", currentStarRight, false))
+    ticketTeamStarContainerLeftEl.append(createTicketStars("left", currentStarLeft, false))
+    ticketTeamStarContainerRightEl.append(createTicketStars("right", currentStarRight, false))
 
     // Setting Tiebreaker Information
     if (currentStarLeft >= currentFirstTo - 1 && currentStarRight >= currentFirstTo - 1) {
