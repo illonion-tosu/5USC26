@@ -1,0 +1,12 @@
+/* ===========================
+   Main
+=========================== */
+.main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    background: center / cover;
+    background-image: url("static/background.png")
+}
