@@ -1,3 +1,14 @@
+@font-face {
+    font-family: ProtoMono;
+    font-weight: 400;
+    src: url("../fonts/ProtoMono-Regular.woff2")
+}
+
+@font-face {
+    font-family: SnowyDays;
+    src: url("../fonts/Snowy\ Days.ttf")
+}
+
 /* ===========================
    Main
 =========================== */
@@ -8,5 +19,19 @@
     width: 1920px;
     height: 1080px;
     background: center / cover;
-    background-image: url("static/background.png")
+    background-image: url("static/background.png");
+    font-family: "ProtoMono";
 }
+
+/* ===========================
+   Round Text
+=========================== */
+.round-text {
+    position: absolute;
+    color: white;
+    font-size: 1.5rem;
+    right: 147px;
+    transform: translateX(50%);
+}
+.round-name { top: 177px; }
+.mappool-text { top: 199px; }
