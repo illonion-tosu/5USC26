@@ -91,26 +91,41 @@
 .middle-now-playing-section {
     --side-colour: rgb(162 165 167);
 
-    top: 900px;
-    width: 952px;
-    height: 153px;
+    position: absolute;
+    top: 916px;
+    width: 1920px;
+    height: 122px;
     border: 4px solid rgb(128 129 131);
-    background-image: linear-gradient(to right, var(--side-colour), rgb(228 230 232), var(--side-colour));
+    /* background-image: linear-gradient(to right, var(--side-colour), rgb(228 230 232), var(--side-colour)); */
 }
 
-.middle-now-playing-section > *{
+.middle-now-playing-section > * {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
 /* ===========================
-   Now Playing Section Background
+   Now Playing Dial
+=========================== */
+.now-playing-section-dial-container {
+    position: absolute;
+    left: 42px;
+    display: flex;
+    gap: 38px;
+}
+
+.now-playing-section-dial-container > * {
+    width: 90px;
+}
+
+/* ===========================
+   Now Playing Background
 =========================== */
 .now-playing-section-details {
-    left: 153px;
-    width: 781px;
-    height: 110px;
+    left: 433px;
+    width: 1429px;
+    height: 92px;
     border-radius: 10px;
     background: center / cover;
     background-image: url("https://assets.ppy.sh/beatmaps/39804/covers/cover.jpg");
@@ -135,10 +150,10 @@
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
-    width: 370px;
-    height: 70px;
+    width: 770px;
+    height: 60px;
     font-family: ProtoMono, sans-serif;
-    font-size: 1.75em;
+    font-size: 1.5em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,24 +172,22 @@
 =========================== */
 .now-playing-stats {
     position: absolute;
-    right: 20px;
+    right: 56px;
     top: 50%;
     transform: translateY(-50%);
     display: grid;
-    grid-template-columns: 150px 1fr 1fr;
+    grid-template-columns: 145px 1fr 1fr;
     grid-template-rows: repeat(3, 1fr);
-    width: 350px;
-    height: 70px;
+    width: 544px;
+    height: 65px;
     font-family: ProtoMono, sans-serif;
     font-size: 17px;
     align-items: center;
 }
 .now-playing-stats-sr { grid-column: 1 / 4; }
-
 .now-playing-stats > :nth-child(3),
 .now-playing-stats > :nth-child(4),
 .now-playing-stats > :nth-child(6),
 .now-playing-stats > :nth-child(7) { text-align: right; }
 
 .now-playing-stats-item { font-variant-numeric: tabular-nums; }
-.now-playing-section-dial { left: 22px; }
