@@ -24,6 +24,14 @@
 }
 
 /* ===========================
+   Map Shine
+=========================== */
+.map-shine {
+    position: absolute;
+    top: -330px;
+}
+
+/* ===========================
    Round Text
 =========================== */
 .round-text {
@@ -68,9 +76,7 @@
     overflow: hidden;
 }
 
-.message-container {
-    color: white;
-}
+.message-container { color: white; }
 
 .message-name {
     color: yellow;
