@@ -6,6 +6,10 @@
     <title>Showcase</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
+    <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
 </head>
 <body>
     <div class="main">
@@ -14,34 +18,13 @@
         <img class="right-side-logo" src="static/right-side-logo.png">
 
         <!-- Round Name -->
-        <div class="round-text round-name">QUARTERFINALS</div>
+        <div class="round-text round-name" id="round-name">QUARTERFINALS</div>
         <div class="round-text mappool-text">MAPPOOL</div>
 
         <!-- Chat -->
         <img class="live-chat-box" src="static/live-chat-box.png">
         <div class="chat-display">
-            <div class="chat-display-container">
-                <div class="message-container">
-                    <div class="message-name">FAIRY BREAD hasjkdfhajksdf:</div>
-                    <div class="message-content">AAAAAAAAA</div>
-                </div>
-                <div class="message-container">
-                    <div class="message-name">FAIRY BREAD hasjkdfhajksdf:</div>
-                    <div class="message-content">AAAAAAAAAB</div>
-                </div>
-                <div class="message-container">
-                    <div class="message-name">FAIRY BREAD hasjkdfhajksdf:</div>
-                    <div class="message-content">AAAAAAAAAC</div>
-                </div>
-                <div class="message-container">
-                    <div class="message-name">FAIRY BREAD hasjkdfhajksdf:</div>
-                    <div class="message-content">AAAAAAAAAD</div>
-                </div>
-                <div class="message-container">
-                    <div class="message-name">FAIRY BREAD hasjkdfhajksdf:</div>
-                    <div class="message-content">AAAAAAAAAE</div>
-                </div>
-            </div>
+            <div class="chat-display-container" id="chat-display-container"></div>
         </div>
 
         <!-- Now Playing Section -->
@@ -69,5 +52,7 @@
             </div>
         </div>
     </div>
+
+    <script src="index.js" type="module"></script>
 </body>
 </html>

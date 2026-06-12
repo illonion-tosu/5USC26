@@ -84,12 +84,18 @@
     overflow: hidden;
 }
 
-.message-container { color: white; }
-
-.message-name {
-    color: yellow;
-    width: 100%;
+.message-container {
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
 }
+
+.message-container > * {
+    width: max-content;
+    max-width: 100%;
+}
+
+.message-name { margin-right: 5px; }
 
 /* ===========================
    Now Playing Section
