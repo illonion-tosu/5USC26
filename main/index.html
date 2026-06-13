@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
 
+    <link rel="stylesheet" href="../_shared/common.css">
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
@@ -13,12 +14,15 @@
 </head>
 <body>
     <div class="main">
+        <!-- Logo -->
+        <img class="logo" src="static/logo.png">
+
         <!-- Team Flags -->
         <img class="team-flag left-team-flag" id="left-team-flag" src="../flags/transparent.png">
         <img class="team-flag right-team-flag" id="right-team-flag" src="../flags/transparent.png">
     
         <!-- Team Name -->
-        <div class="team-name left-team-name" id="left-team-name">NORHTERN CALIFORNIA A</div>
+        <div class="team-name left-team-name" id="left-team-name"></div>
         <div class="team-name right-team-name" id="right-team-name"></div>
     
         <!-- Star Containers -->
@@ -28,28 +32,23 @@
         <!-- Logo and title -->
         <div class="middle-section round-name-container" id="round-name-container"><span id="round-name"></span> - <span class="league-name" id="league-name">MAJOR LEAGUE</span></div>
 
-        <!-- Greenscreens -->
-        <div class="greenscreen greenscreen-player-1"></div>
-        <div class="greenscreen greenscreen-player-4"></div>
-        <div class="greenscreen greenscreen-bottom-row"></div>
-
         <!-- Now Playing Section -->
         <div class="middle-section middle-now-playing-section" id="now-playing-section">
-            <img class="now-playing-section-dial" src="static/dial-no-arrow.png">
+            <img class="now-playing-section-dial" src="../_shared/assets/dial-no-arrow.png">
             <div class="now-playing-section-details" id="now-playing-section-details">
                 <div class="now-playing-section-details-overlay"></div>
                 <div class="now-playing-metadata">
-                    <div class="now-playing-metadata-text now-playing-metadata-title" id="now-playing-song-title">AAAAAAAAAAAAAAAAAAAAAA</div>
-                    <div class="now-playing-metadata-text now-playing-metadata-artist" id="now-playing-song-artist">AAAAAAAAAAAAAAAAAAAAAA</div>
+                    <div class="now-playing-metadata-text now-playing-metadata-title" id="now-playing-song-title"></div>
+                    <div class="now-playing-metadata-text now-playing-metadata-artist" id="now-playing-song-artist"></div>
                 </div>
                 <div class="now-playing-stats">
-                    <div class="now-playing-stats-item now-playing-st   ats-sr">SR: <span id="stats-sr">9.99*</span></div>
-                    <div class="now-playing-stats-item">LENGTH: <span id="stats-length">99:99</span></div>
-                    <div class="now-playing-stats-item">AR: <span id="stats-ar">10.3</span></div>
-                    <div class="now-playing-stats-item">HP: <span id="stats-hp">10.3</span></div>
-                    <div class="now-playing-stats-item">BPM: <span id="stats-bpm">999-999</span></div>
-                    <div class="now-playing-stats-item">CS: <span id="stats-cs">10.1</span></div>
-                    <div class="now-playing-stats-item">OD: <span id="stats-od">10.1</span></div>
+                    <div class="now-playing-stats-item now-playing-stats-sr">SR: <span id="stats-sr"></span></div>
+                    <div class="now-playing-stats-item">LENGTH: <span id="stats-length"></span></div>
+                    <div class="now-playing-stats-item">AR: <span id="stats-ar"></span></div>
+                    <div class="now-playing-stats-item">HP: <span id="stats-hp"></span></div>
+                    <div class="now-playing-stats-item">BPM: <span id="stats-bpm"></span></div>
+                    <div class="now-playing-stats-item">CS: <span id="stats-cs"></span></div>
+                    <div class="now-playing-stats-item">OD: <span id="stats-od"></span></div>
                 </div>
             </div>
         </div>
@@ -58,23 +57,16 @@
         <div class="scores-container" id="scores-container">
             <div class="score-bar score-bar-left" id="score-bar-left"></div>
             <div class="score-bar score-bar-right" id="score-bar-right"></div>
-            <div class="score score-left" id="score-left">999, 999, 999</div>
-            <div class="score score-right" id="score-right">999, 999, 999</div>
-            <div class="score score-difference" id="score-difference-number">999, 999, 999</div>
+            <div class="score score-left" id="score-left"></div>
+            <div class="score score-right" id="score-right"></div>
+            <div class="score score-difference" id="score-difference-number"></div>
             <img class="score-dial" id="score-dial" src="static/dial-arrow.png">
         </div>
 
         <!-- Chat Display -->
         <div class="chat-display" id="chat-display">
-            <img class="chat-display-title" src="static/live-chat.png">
-            <div class="chat-display-border" id="chat-display-border">
-                <div class="chat-display-container">
-                    <div class="chat-display-message">
-                        <div class="chat-display-name">Fairy Bread:</div>
-                        <div class="chat-display-content">Hello World</div>
-                    </div>
-                </div>
-            </div>
+            <img class="chat-display-title" src="../_shared/assets/live-chat.png">
+            <div class="chat-display-border" id="chat-display-border"></div>
         </div>
     </div>
 

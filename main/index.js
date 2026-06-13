@@ -1,5 +1,5 @@
 import { updateChat } from "../_shared/core/chat.js"
-import { getCookie } from "../_shared/core/utils.js"
+import { getCookie, setLengthDisplay } from "../_shared/core/utils.js"
 import { createTosuWsSocket } from "../_shared/core/websocket.js"
 
 // Team Inforamtion
@@ -221,14 +221,6 @@ function setFlagAndTeamName(teamName, teamNameElement, teamFlagElement) {
         teamFlagElement.onerror = null
         teamFlagElement.src = "../flags/transparent.png"
     }
-}
-
-// Set Length Display
-function setLengthDisplay(seconds) {
-    const minuteCount = Math.floor(seconds / 60)
-    const secondCount = seconds % 60
-
-    return `${minuteCount.toString().padStart(2, "0")}:${secondCount.toString().padStart(2, "0")}`
 }
 
 // Interval stuff reading cookies and setting information
