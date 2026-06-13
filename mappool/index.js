@@ -373,6 +373,7 @@ function setPick(pickTile, id, currentMap, team) {
     pickTile.dataset.id = id
     pickTile.children[0].style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${currentMap.beatmapset_id}/covers/cover.jpg")`
     pickTile.children[1].style.backgroundColor = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
+    pickTile.children[1].style.color = team === "left" ? "white" : "black"
     pickTile.children[3].style.backgroundColor = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
     pickTile.children[1].textContent = `${currentMap.mod}${currentMap.order}`
 }

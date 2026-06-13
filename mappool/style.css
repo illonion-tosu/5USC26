@@ -4,6 +4,7 @@
     --ban-container-border-bottom: 285px;
     --ban-container-border-left: -29px;
     --ban-container-bottom-layer-height: 28px;
+    --pick-container-bottom-layer-height: 38px;
     --ban-container-colour-left: #D91B5D;
     --ban-container-colour-right: #6BCDEA;
     --ban-container-background: #272626;
@@ -332,8 +333,8 @@
     height: 100%;
     background-color: rgba(0,0,0,0.2);
 }
-.left-win-overlay { background-color: rgba(204, 78, 78, 0.4)}
-.right-win-overlay { background-color: rgba(28, 76, 143, 0.4)}
+.left-win-overlay { background-color: rgba(0,0,0,0.6); }
+.right-win-overlay { background-color: rgba(0,0,0,0.6); }
 
 /* ===========================
    Tile Bottom
@@ -343,25 +344,25 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: var(--ban-container-bottom-layer-height);
+    height: var(--pick-container-bottom-layer-height);
     text-align: center;
-    line-height: var(--ban-container-bottom-layer-height);
+    line-height: var(--pick-container-bottom-layer-height);
     font-family: ProtoMono, sans-serif;
     color: white;
-    font-size: 1.25em;
+    font-size: 1.75em;
 }
 
 .mappool-container-tile-second-bottom {
     position: absolute;
-    bottom: var(--ban-container-bottom-layer-height);
+    bottom: var(--pick-container-bottom-layer-height);
     width: 100%;
     height: 10px;
     opacity: 40%;
 }
 
 .mappool-container-tiebreaker-bottom {
-    line-height: 66px;
-    height: 66px;
+    line-height: 56px;
+    height: 56px;
     font-size: 2.5em;
 }
 
@@ -430,7 +431,7 @@
     color: white;
     font-weight: 700;
     line-height: 30px;
-    font-size: 1.5rem;
+    font-size: 1.4em;
 }
 
 .sidebar-section h2 {
@@ -438,7 +439,7 @@
     text-align: center;
     color: white;
     font-weight: 700;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 .sidebar-section p {
