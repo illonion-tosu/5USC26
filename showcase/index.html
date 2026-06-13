@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
+    <script src="../_shared/deps/reconnecting-websocket.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <!-- Map Shine -->
+        <img class="map-shine" src="static/map-shine.png">
+        <img class="right-side-logo" src="static/right-side-logo.png">
+
+        <!-- Round Name -->
+        <div class="round-text round-name" id="round-name">QUARTERFINALS</div>
+        <div class="round-text mappool-text">MAPPOOL</div>
+
+        <!-- Chat -->
+        <img class="live-chat-box" src="static/live-chat-box.png">
+        <div class="chat-display">
+            <div class="chat-display-container" id="chat-display-container"></div>
+        </div>
+
+        <!-- Now Playing Section -->
+        <div class="middle-section middle-now-playing-section" id="now-playing-section">
+            <div class="now-playing-section-dial-container">
+                <img src="static/dial-no-arrow.png">
+                <img src="static/dial-no-arrow.png">
+                <img src="static/dial-no-arrow.png">
+            </div>
+            <div class="now-playing-section-details" id="now-playing-section-details">
+                <div class="now-playing-section-details-overlay"></div>
+                <div class="now-playing-metadata">
+                    <div class="now-playing-metadata-text now-playing-metadata-title" id="now-playing-song-title">AAAAAAAAAAAAAAAAAAAAAA</div>
+                    <div class="now-playing-metadata-text now-playing-metadata-artist" id="now-playing-song-artist">AAAAAAAAAAAAAAAAAAAAAA</div>
+                </div>
+                <div class="now-playing-stats">
+                    <div class="now-playing-stats-item now-playing-stats-sr">SR: <span id="stats-sr">9.99*</span></div>
+                    <div class="now-playing-stats-item">LENGTH: <span id="stats-length">99:99</span></div>
+                    <div class="now-playing-stats-item">AR: <span id="stats-ar">10.3</span></div>
+                    <div class="now-playing-stats-item">HP: <span id="stats-hp">10.3</span></div>
+                    <div class="now-playing-stats-item">BPM: <span id="stats-bpm">999-999</span></div>
+                    <div class="now-playing-stats-item">CS: <span id="stats-cs">10.1</span></div>
+                    <div class="now-playing-stats-item">OD: <span id="stats-od">10.1</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js" type="module"></script>
+</body>
+</html>
