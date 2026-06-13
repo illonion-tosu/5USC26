@@ -18,8 +18,6 @@
     left: 0;
     width: 1920px;
     height: 1080px;
-    background: center / cover;
-    background-image: url("static/background.png");
     font-family: ProtoMono, sans-serif;
     overflow: hidden;
 }

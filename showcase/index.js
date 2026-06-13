@@ -31,10 +31,9 @@ socket.onmessage = async event => {
     console.log(data)
 
     // Now Playing Information
-    if ((currentId !== data.beatmap.id || currentChecksum !== data.beatmap.checksum) && allBeatmaps) {
+    if (currentId !== data.beatmap.id || currentChecksum !== data.beatmap.checksum) {
         currentId = data.beatmap.id
         currentChecksum = data.beatmap.checksum
-        mapFound = false
 
         nowPlayingSectionDetailsEl.style.backgroundImage = `url("${location.origin}/Songs/${data.folders.beatmap}/${data.files.background}")`
         nowPlayingSongTitleEl.textContent = data.beatmap.title
