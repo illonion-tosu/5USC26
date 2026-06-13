@@ -69,7 +69,7 @@ async function getBeatmaps() {
     }
 
     // Edit Map Tile Width
-    let width = (1274 - (30 * (currentFirstTo - 1))) / currentFirstTo
+    let width = (1195 - (30 * (currentFirstTo - 1))) / currentFirstTo
     for (const sheet of document.styleSheets) {
         for (const rule of sheet.cssRules) {
             if (rule.selectorText === ".mappool-container-tile" || rule.selectorText === ".mappool-container-tiebreaker") {
