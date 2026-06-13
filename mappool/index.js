@@ -268,14 +268,17 @@ function toggleStars() {
     document.cookie = `isStarToggled=${isStarToggled}; path=/`
     if (!isStarToggled) {
         teamStarContainerLeft.style.display = "none"
-        ticketTeamStarContainerLeftEl.style.display = "none"
         teamStarContainerRight.style.display = "none"
+        ticketTeamStarContainerLeftEl.style.display = "none"
+        ticketTeamStarContainerRightEl.style.display = "none"
+
         toggleStarsEl.classList.add("toggle-inactive")
         toggleStarsEl.classList.remove("toggle-active")
     } else {
-        teamStarContainerLeft.style.display = "block"
+        teamStarContainerLeft.style.display = "flex"
+        teamStarContainerRight.style.display = "flex"
+        ticketTeamStarContainerLeftEl.style.display = "block"
         ticketTeamStarContainerRightEl.style.display = "block"
-        teamStarContainerRight.style.display = "block"
         toggleStarsEl.classList.add("toggle-active")
         toggleStarsEl.classList.remove("toggle-inactive")
     }
@@ -322,7 +325,6 @@ async function mapClickEvent(event) {
         const currentBanContainer = team === "left" ? teamBanContainerLeftEl : teamBanContainerRightEl
         for (let i = 0; i < currentBanContainer.childElementCount; i++) {
             if (currentBanContainer.children[i].dataset.id !== undefined) continue
-            console.log("hello")
             setBan(
                 currentBanContainer.children[i],
                 currentBanContainer.children[i].children[0].children[2],
@@ -649,7 +651,7 @@ const nextPickerEl = document.getElementById("next-picker")
 let currentNextPicker = "none"
 function setNextPicker(pickerTeam) {
     currentNextPicker = pickerTeam
-    nextPickerEl.textContent = pickerTeam === "left" ? "RED" : "BLUE"
+    nextPickerEl.textContent = pickerTeam === "left" ? "RED" : pickerTeam === "right" ? "BLUE" : "NONE"
 }
 
 // Create h2 title
@@ -971,11 +973,11 @@ window.onload = () => {
     updateStarCountLeftPlusEl.addEventListener("click", () => updateStarCount('left','plus'))
     updateStarCountRightMinusEl.addEventListener("click", () => updateStarCount('right','minus'))
     updateStarCountRightPlusEl.addEventListener("click", () => updateStarCount('right','plus'))
-    toggleStarsEl.addEventListener("click", () => toggleStars)
+    toggleStarsEl.addEventListener("click", () => toggleStars())
     setNextPickerLeftEl.addEventListener("click", () => setNextPicker("left"))
     setNextPickerRightEl.addEventListener("click", () => setNextPicker("right"))
     nextPickerNoneEl.addEventListener("click", () => setNextPicker("none"))
-    toggleAutopickEl.addEventListener("click", () => toggleAutopick)
+    toggleAutopickEl.addEventListener("click", () => toggleAutopick())
     majorLeagueButtonEl.addEventListener("click", () => setLeague("major"))
     minorLeagueButtonEl.addEventListener("click", () => setLeague("minor"))
     mappoolOverrideActionSelectEl.addEventListener("click", () => mappoolOverrideChangeAction)

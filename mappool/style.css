@@ -387,6 +387,7 @@
     width: 1000px;
     height: 1080px;
     background-color: #26272B;
+    font-family: ProtoMono, sans-serif;
 }
 
 /* ===========================
@@ -444,7 +445,7 @@
     color: white;
     text-align: center;
     line-height: 20px;
-    font-size: 0.7em;
+    font-size: 0.8rem;
 }
 
 /* ===========================
@@ -465,11 +466,11 @@ button {
     width: 105px;
     height: 30px;
     font-weight: 400;
-    font-size: 0.6em;
     background-color: transparent;
     color: white;
     border: 2px solid white;
     border-radius: 10px;
+    font-size: 1rem;
 }
 
 .sidebar-button-container button:active {
