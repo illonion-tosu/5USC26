@@ -8,11 +8,15 @@ const ticketTeamStarContainerRightEl = document.getElementById("ticket-team-star
 const teamStarContainerLeft = document.getElementById("left-team-star-container")
 const teamStarContainerRight = document.getElementById("right-team-star-container")
 
+// Ban Containers
+const teamBanContainerLeftEl = document.getElementById("team-bans-container-left")
+const teamBanContainerRightEl = document.getElementById("team-bans-container-right")
+
 // Beatmap information
 const roundNameEl = document.getElementById("round-name")
 const mappoolManagementMapsEl = document.getElementById("mappool-management-maps")
 let allBeatmaps, roundName
-let currentBestOf, currentFirstTo, currentStarLeft = 0, currentStarRight = 0
+let currentBestOf, currentFirstTo, currentStarLeft = 0, currentStarRight = 0, currentBanCount = 0
 async function getBeatmaps() {
     const response = await axios.get("../_data/beatmaps.json")
     // Set information
@@ -23,15 +27,19 @@ async function getBeatmaps() {
     switch (roundName) {
         case "ROUND OF 32":
             currentBestOf = 9
+            currentBanCount = 1
             break
         case "ROUND OF 16": case "QUARTERFINALS":
             currentBestOf = 11
+            currentBanCount = 2
             break
         case "SEMIFINALS": case "FINALS":
             currentBestOf = 13
+            currentBanCount = 2
             break
         case "GRAND FINALS":
             currentBestOf = 15
+            currentBanCount = 3
     }
     currentFirstTo = Math.ceil(currentBestOf / 2)
     document.cookie = `currentFirstTo=${currentFirstTo}; path=/`
@@ -77,10 +85,52 @@ async function getBeatmaps() {
             }
         }
     }
+
+    // Geenrate bans
+    for (let i = 0; i < currentBanCount; i++) {
+        console.log("hello")
+        teamBanContainerLeftEl.append(createMappoolBanTile("red"))
+        teamBanContainerRightEl.append(createMappoolBanTile("blue"))
+    }
 }
 getBeatmaps()
 // Find Beatmaps
 const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.beatmap_id) === Number(beatmapId))
+
+function createMappoolBanTile(team) {
+    const teamBanImage = document.createElement("div")
+    teamBanImage.classList.add("team-ban-image")
+
+    const teamBanLayerOne = document.createElement("div")
+    teamBanLayerOne.classList.add("team-ban-layer-one")
+
+    const teamBanMiddleLine = document.createElement("div")
+    teamBanMiddleLine.classList.add("team-ban-middle-line")
+
+    const teamBanLayerTwo = document.createElement("div")
+    teamBanLayerTwo.classList.add("team-ban-layer-two")
+
+    const teamBanLayerCenter = document.createElement("div")
+    teamBanLayerCenter.classList.add("team-ban-layer-center", `${team}-team-ban-layer-center`)
+
+    const teamBanImageOverlay = document.createElement("div")
+    teamBanImageOverlay.classList.add("team-ban-image-overlay")
+
+    const teamBanIcon = document.createElement("img")
+    teamBanIcon.classList.add("team-ban-icon")
+    teamBanIcon.setAttribute("src", `static/${team}-ban.png`)
+
+    const teamBanSecondBottomLayer = document.createElement("div")
+    teamBanSecondBottomLayer.classList.add("team-ban-second-bottom-layer")
+
+    const teamBanBottomLayer = document.createElement("div")
+    teamBanBottomLayer.classList.add("team-ban-bottom-layer")
+
+    teamBanLayerCenter.append(teamBanImageOverlay, teamBanIcon, teamBanSecondBottomLayer, teamBanBottomLayer)
+    teamBanLayerOne.append(teamBanMiddleLine, teamBanLayerTwo, teamBanLayerCenter)
+    teamBanImage.append(teamBanLayerOne)
+    return teamBanImage
+}
 
 // Create Mappool Container Tile
 function createMappoolContainerTile(side) {

@@ -162,6 +162,7 @@
     background-image: url("https://assets.ppy.sh/beatmaps/2328973/covers/cover.jpg");
     border-radius: 6px;
     overflow: hidden;
+    display: none;
 }
 
 .team-ban-second-bottom-layer {
