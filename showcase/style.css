@@ -1,0 +1,204 @@
+@font-face {
+    font-family: ProtoMono;
+    font-weight: 400;
+    src: url("../fonts/ProtoMono-Regular.woff2")
+}
+
+@font-face {
+    font-family: SnowyDays;
+    src: url("../fonts/Snowy\ Days.ttf")
+}
+
+/* ===========================
+   Main
+=========================== */
+.main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    font-family: ProtoMono, sans-serif;
+    overflow: hidden;
+}
+
+/* ===========================
+   Map Shine
+=========================== */
+.map-shine {
+    position: absolute;
+    top: -330px;
+}
+
+/* ===========================
+   Right Side Logo
+=========================== */
+.right-side-logo {
+    position: absolute;
+    right: 51px;
+}
+
+/* ===========================
+   Round Text
+=========================== */
+.round-text {
+    position: absolute;
+    color: white;
+    font-size: 1.5rem;
+    right: 147px;
+    transform: translateX(50%);
+}
+.round-name { top: 166px; }
+.mappool-text { top: 188px; }
+
+/* ===========================
+   Live Chat
+=========================== */
+.live-chat-box {
+    position: absolute;
+    right: 30px;
+    top: 597px;
+}
+
+.chat-display {
+    position: absolute;
+    right: 34px;
+    bottom: 188px;
+    width: 235px;
+    height: 272px;
+}
+
+.chat-display-container {
+    --margin: 7px;
+
+    position: absolute;
+    left: var(--margin);
+    top: var(--margin);
+    width: calc(100% - var(--margin) * 2);
+    height: calc(100% - var(--margin) * 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.message-container {
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.message-container > * {
+    width: max-content;
+    max-width: 100%;
+}
+
+.message-name { margin-right: 5px; }
+
+/* ===========================
+   Now Playing Section
+=========================== */
+.middle-now-playing-section {
+    --side-colour: rgb(162 165 167);
+
+    position: absolute;
+    top: 916px;
+    width: 1912px;
+    height: 122px;
+    border: 4px solid rgb(128 129 131);
+    background-image: linear-gradient(to right, var(--side-colour), rgb(228 230 232), var(--side-colour));
+}
+
+.middle-now-playing-section > * {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ===========================
+   Now Playing Dial
+=========================== */
+.now-playing-section-dial-container {
+    position: absolute;
+    left: 42px;
+    display: flex;
+    gap: 38px;
+}
+
+.now-playing-section-dial-container > * {
+    width: 90px;
+}
+
+/* ===========================
+   Now Playing Background
+=========================== */
+.now-playing-section-details {
+    left: 433px;
+    width: 1429px;
+    height: 92px;
+    border-radius: 10px;
+    background: center / cover;
+    background-image: url("https://assets.ppy.sh/beatmaps/39804/covers/cover.jpg");
+    color: rgb(108 109 112);
+}
+
+.now-playing-section-details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background-color: rgb(0 0 0 / 80%);
+}
+
+/* ===========================
+   Now Playing Metatadata
+=========================== */
+.now-playing-metadata {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 770px;
+    height: 60px;
+    font-family: ProtoMono, sans-serif;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.now-playing-metadata-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.now-playing-metadata-title { color: white; }
+
+/* ===========================
+   Now Playing Stats
+=========================== */
+.now-playing-stats {
+    position: absolute;
+    right: 56px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 145px 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    width: 544px;
+    height: 65px;
+    font-family: ProtoMono, sans-serif;
+    font-size: 17px;
+    align-items: center;
+}
+.now-playing-stats-sr { grid-column: 1 / 4; }
+
+.now-playing-stats > :nth-child(3),
+.now-playing-stats > :nth-child(4),
+.now-playing-stats > :nth-child(6),
+.now-playing-stats > :nth-child(7) { text-align: right; }
+
+.now-playing-stats-item { font-variant-numeric: tabular-nums; }
