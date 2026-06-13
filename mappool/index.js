@@ -826,15 +826,13 @@ function mappoolOverrideRemoveBan() {
     if (!mappoolOverrideTeam || !mappoolOverrideTileNumber) return
 
     // Get Containers
-    const currentBanImageContainer = mappoolOverrideTeam === "left" ? teamBanImageContainerLeftEl : teamBanImageContainerRightEl
-    const currentBanTextContainer = mappoolOverrideTeam === "left"? teamBanTextContainerLeftEl : teamBanTextContainerRightEl
+    const currentBanContainer = mappoolOverrideTeam === "left" ? teamBanContainerLeftEl : teamBanContainerRightEl
 
     // Remove Information
-    const currentBanImage = currentBanImageContainer.children[mappoolOverrideTileNumber]
-    currentBanImage.removeAttribute("data-id")
+    const currentBanImage = currentBanContainer.children[mappoolOverrideTileNumber].children[0].children[2]
+    currentBanContainer.children[mappoolOverrideTileNumber].removeAttribute("data-id")
     currentBanImage.style.backgroundImage = "none"
-    currentBanImage.children[1].style.display = "none"
-    currentBanTextContainer.children[mappoolOverrideTileNumber].textContent = ``
+    currentBanImage.style.display = "none"
 }
 
 // Mappool Override Set Pick
