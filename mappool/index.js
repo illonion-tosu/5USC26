@@ -262,6 +262,7 @@ function updateStarCount(side, action) {
 // Star Toggle
 const toggleStarsEl = document.getElementById("toggle-stars")
 let isStarToggled = true
+document.cookie = `isStarToggled=${isStarToggled}; path=/`
 function toggleStars() {
     isStarToggled = !isStarToggled
     toggleStarsEl.innerText = `TOGGLE STARS: ${isStarToggled? "ON" : "OFF"}`
