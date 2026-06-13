@@ -285,12 +285,6 @@ function toggleStars() {
     }
 }
 
-// Ban related elements
-const teamBanImageContainerLeftEl = document.getElementById("team-ban-image-container-left")
-const teamBanTextContainerLeftEl = document.getElementById("team-ban-text-container-left")
-const teamBanImageContainerRightEl = document.getElementById("team-ban-image-container-right")
-const teamBanTextContainerRightEl = document.getElementById("team-ban-text-container-right")
-
 // Pick related elements
 const mappoolContainerLeftEl = document.getElementById("mappool-container-left")
 const mappoolContainerRightEl = document.getElementById("mappool-container-right")
