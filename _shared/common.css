@@ -27,7 +27,6 @@
     width: 1920px;
     height: 1080px;
     background: center / cover;
-    background-image: url("static/background.png")
 }
 
 /* ===========================
@@ -98,7 +97,7 @@
     background-image: var(--linear-gradient);
 }
 
-.middle-now-playing-section > *{
+.middle-now-playing-section > * {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
