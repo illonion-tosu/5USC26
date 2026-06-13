@@ -1,5 +1,5 @@
 import { updateChat } from "../_shared/core/chat.js"
-import { setLengthDisplay } from "../_shared/core/utils.js"
+import { delay, setLengthDisplay } from "../_shared/core/utils.js"
 import { createTosuWsSocket } from "../_shared/core/websocket.js"
 
 // Team star container
@@ -156,7 +156,11 @@ function createMappoolContainerTile(side) {
     crown.classList.add("crown")
     crown.setAttribute("src", `static/${side}-crown.png`)
 
-    mappoolContainerTile.append(mappoolContainerTileBackground, mappoolContainerTileBottom, crown)
+    // Mappool Container Tile Bottom
+    const mappoolContainerTileSecondBottom = document.createElement("div")
+    mappoolContainerTileSecondBottom.classList.add("mappool-container-tile-second-bottom")
+
+    mappoolContainerTile.append(mappoolContainerTileBackground, mappoolContainerTileBottom, crown, mappoolContainerTileSecondBottom)
     return mappoolContainerTile
 }
 
@@ -368,7 +372,8 @@ function setBan(banTile, imageTile, textTile, id, mapObject, tileNumber) {
 function setPick(pickTile, id, currentMap, team) {
     pickTile.dataset.id = id
     pickTile.children[0].style.backgroundImage = `url("https://assets.ppy.sh/beatmaps/${currentMap.beatmapset_id}/covers/cover.jpg")`
-    pickTile.children[1].style.backgroundColor = team === "left" ? "#CC4E4E" : "#1C4C8F"
+    pickTile.children[1].style.backgroundColor = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
+    pickTile.children[3].style.backgroundColor = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
     pickTile.children[1].textContent = `${currentMap.mod}${currentMap.order}`
 }
 
