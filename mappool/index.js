@@ -600,34 +600,6 @@ socket.onmessage = event => {
             chatLen = updateChat(chatLen, chatData, chatDisplayContainerEl)
         }
     }
-
-    // Set current picker
-    // const mapCheck = !!(
-    //     mappoolContainerLeftEl.querySelector(`[data-id="${currentId}"]`) ||
-    //     mappoolContainerRightEl.querySelector(`[data-id="${currentId}"]`)
-    // )
-    // if (mapCheck) {
-    //     currentPickerEl.style.display = "block"
-    //     let element, index, parent
-    //     if (mappoolContainerLeftEl.querySelector(`[data-id="${currentId}"]`)) {
-    //         parent = mappoolContainerLeftEl
-    //         element = parent.querySelector(`[data-id="${currentId}"]`)
-    //         currentPickerEl.setAttribute("src", "static/red-team-picking.png")
-    //     } else {
-    //         parent = mappoolContainerRightEl
-    //         element = parent.querySelector(`[data-id="${currentId}"]`)
-    //         currentPickerEl.setAttribute("src", "static/blue-team-picking.png")
-    //     }
-
-    //     // Get index of element
-    //     index = Array.from(parent.children).indexOf(element)
-
-    //     // Set horizontal alignment
-    //     const widthOfTile = parent.children[0].getBoundingClientRect().width
-    //     currentPickerEl.style.left = `${599 + index * (widthOfTile + 35) + widthOfTile / 2}px`
-    // } else {
-    //     currentPickerEl.style.display = "none"
-    // }
 }
 
 // Toggle Autopick
