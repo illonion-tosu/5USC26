@@ -39,28 +39,6 @@
 }
 
 /* ===========================
-   Greenscreens
-=========================== */
-.greenscreen {
-    position: absolute;
-    height: var(--greenscreen-height);
-    background-color: rgb(0 255 0);
-    z-index: 1;
-}
-
-.greenscreen-player-1, .greenscreen-player-4 {
-    top: var(--greenscreen-player-1-4-top);
-    width: var(--greenscreen-one-player-width);
-}
-
-.greenscreen-player-4 { right: 0; }
-
-.greenscreen-bottom-row {
-    top: calc(var(--greenscreen-player-1-4-top) + var(--greenscreen-height));
-    width: calc(var(--greenscreen-one-player-width) * 4);
-}
-
-/* ===========================
    Scores Container
 =========================== */
 .scores-container {
