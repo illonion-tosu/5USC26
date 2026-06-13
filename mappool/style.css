@@ -8,6 +8,8 @@
     --ban-container-colour-left: #D91B5D;
     --ban-container-colour-right: #6BCDEA;
     --ban-container-background: #272626;
+    --sidebar-background-colour: #26272B;
+    --mappool-container-background-colour: #414042;
     --mappool-container-gap: 15px;
 }
 
@@ -144,7 +146,7 @@
     top: var(--margin-y);
     width: 100%;
     height: calc(100% - var(--margin-y) * 2);
-    background-color: rgba(0 0 0 / 0.25);
+    background-color: rgb(0 0 0 / 25%);
 }
 
 .team-ban-layer-center {
@@ -168,7 +170,7 @@
     left: 0;
     width: 100%;
     height: 10px;
-    opacity: 50%;
+    opacity: 0.5;
 }
 .red-team-ban-layer-center .team-ban-second-bottom-layer { background-color: var(--ban-container-colour-left); }
 .blue-team-ban-layer-center .team-ban-second-bottom-layer { background-color: var(--ban-container-colour-right); }
@@ -205,7 +207,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 0px;
+    width: 0;
     height: 100%;
     border-left: var(--border);
     border-right: var(--border);
@@ -220,7 +222,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0 0 0 / 0.5);
+    background-color: rgb(0 0 0 / 50%);
     border-radius: inherit;
 }
 
@@ -285,7 +287,7 @@
     position: relative;
     height: 310px;
     border-radius: 12px;
-    background-color: #414042;
+    background-color: var(--mappool-container-background-colour);
     overflow: hidden;
 }
 
@@ -293,7 +295,7 @@
     position: relative;
     height: 644px;
     border-radius: 12px;
-    background-color: #414042;
+    background-color: var(--mappool-container-background-colour);
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -327,10 +329,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgb(0 0 0 / 20%);
 }
-.left-win-overlay { background-color: rgba(0,0,0,0.6); }
-.right-win-overlay { background-color: rgba(0,0,0,0.6); }
+.left-win-overlay { background-color: rgb(0 0 0 / 60%); }
+.right-win-overlay { background-color: rgb(0 0 0 / 60%); }
 
 /* ===========================
    Tile Bottom
@@ -353,7 +355,7 @@
     bottom: var(--pick-container-bottom-layer-height);
     width: 100%;
     height: 10px;
-    opacity: 40%;
+    opacity: 0.4;
 }
 
 .mappool-container-tiebreaker-bottom {
@@ -382,7 +384,7 @@
     left: 1920px;
     width: 1000px;
     height: 1080px;
-    background-color: #26272B;
+    background-color: var(--sidebar-background-colour);
     font-family: ProtoMono, sans-serif;
 }
 
@@ -416,30 +418,30 @@
 .sidebar-section {
     border-bottom: 2px solid white;
     padding-bottom: 20px;
+    
 }
 
 /* ===========================
     Texts
 =========================== */
-.sidebar-section h1 {
+.sidebar-section-text {
     width: 100%;
-    text-align: center;
     color: white;
+    text-align: center;
+}
+
+.sidebar-section h1 {
     font-weight: 700;
     line-height: 30px;
     font-size: 1.4em;
 }
 
 .sidebar-section h2 {
-    width: 100%;
-    text-align: center;
-    color: white;
     font-weight: 700;
     font-size: 1em;
 }
 
 .sidebar-section p {
-    color: white;
     text-align: center;
     line-height: 20px;
     font-size: 0.8rem;
@@ -472,7 +474,7 @@ button {
 
 .sidebar-button-container button:active {
     background-color: white;
-    color: #26272B;
+    color: var(--sidebar-background-colour);
 }
 
 /* ===========================
@@ -523,13 +525,13 @@ button {
 /* ===========================
     Toggle Stars
 =========================== */
-.toggle-active { background-color: rgb(32, 121, 44); }
-.toggle-inactive { background-color: rgb(121, 32, 32); }
+.toggle-active { background-color: rgb(32 121 44); }
+.toggle-inactive { background-color: rgb(121 32 32); }
 
 /* ===========================
     Scene Switching
 =========================== */
-#sceneCollection button {
+#scene-collection button {
     height: 60px;
     font-size: 0.8em;
     line-height: 15px;

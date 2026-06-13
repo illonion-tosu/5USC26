@@ -356,7 +356,7 @@ async function mapClickEvent(event) {
 }
 
 // Set Ban
-function setBan(banTile, imageTile, textTile, id, mapObject, tileNumber) {
+function setBan(banTile, imageTile, textTile, id, mapObject) {
     banTile.dataset.id = id
     imageTile.style.backgroundImage =  `url("https://assets.ppy.sh/beatmaps/${mapObject.beatmapset_id}/covers/cover.jpg")`
     imageTile.style.display = "block"
@@ -396,9 +396,6 @@ let currentIpcState, previousIpcState, checkedWinner = false
 
 // Now Playing Information
 let currentId, currentChecksum, currentMappoolBeatmap, currentPickedTile
-
-// Current Picker
-const currentPickerEl = document.getElementById("current-picker")
 
 // Now Playing Information
 const nowPlayingSectionDetailsEl = document.getElementById("now-playing-section-details")
@@ -877,16 +874,12 @@ function setLeague(league) {
 
 
 // OBS Information
-const sceneCollection = document.getElementById("sceneCollection")
+const sceneCollection = document.getElementById("scene-collection")
 let autoadvance_button = document.getElementById('auto-advance-button')
-let autoadvance_timer_label = document.getElementById('autoAdvanceTimerLabel')
-const pick_to_transition_delay_ms = 10000;
 let enableAutoAdvance = false
 const gameplay_scene_name = "Gameplay"
 const mappool_scene_name = "Mappool"
 const winner_scene_name = "Team Win"
-
-let sceneTransitionTimeoutID
 
 function switchAutoAdvance() {
     enableAutoAdvance = !enableAutoAdvance

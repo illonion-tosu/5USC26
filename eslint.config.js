@@ -30,7 +30,8 @@ module.exports = [
                 requestAnimationFrame: "readonly",
                 axios: "readonly",
                 CountUp: "readonly",
-                ComfyJS: "readonly"
+                ComfyJS: "readonly",
+                MouseEvent: "readonly"
             },
         },
         rules: {

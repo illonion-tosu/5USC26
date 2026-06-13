@@ -12,7 +12,6 @@
 :root {
     --team-flag-horizontal-alignment: 37px;
     --team-details-horizontal-alignment: 192px;
-
     --side-colour: rgb(162 165 167);
     --linear-gradient: linear-gradient(to right, var(--side-colour), rgb(228 230 232), var(--side-colour));
 }
