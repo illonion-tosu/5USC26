@@ -306,8 +306,8 @@ async function mapClickEvent(event) {
 
     // Check if map exists in bans
     const mapCheck = !!(
-        teamBanImageContainerLeftEl.querySelector(`[data-id="${currentMapId}"]`) ||
-        teamBanImageContainerRightEl.querySelector(`[data-id="${currentMapId}"]`) ||
+        teamBanContainerLeftEl.querySelector(`[data-id="${currentMapId}"]`) ||
+        teamBanContainerRightEl.querySelector(`[data-id="${currentMapId}"]`) ||
         mappoolContainerLeftEl.querySelector(`[data-id="${currentMapId}"]`) ||
         mappoolContainerRightEl.querySelector(`[data-id="${currentMapId}"]`)
     )
@@ -315,14 +315,14 @@ async function mapClickEvent(event) {
 
     // Bans
     if (action === "ban") {
-        const currentBanImageContainer = team === "left" ? teamBanImageContainerLeftEl : teamBanImageContainerRightEl
-        const currentBanTextContainer = team === "left"? teamBanTextContainerLeftEl : teamBanTextContainerRightEl
-
-        for (let i = 0; i < currentBanImageContainer.childElementCount; i++) {
-            if (currentBanImageContainer.children[i].dataset.id !== undefined) continue
+        const currentBanContainer = team === "left" ? teamBanContainerLeftEl : teamBanContainerRightEl
+        for (let i = 0; i < currentBanContainer.childElementCount; i++) {
+            if (currentBanContainer.children[i].dataset.id !== undefined) continue
+            console.log("hello")
             setBan(
-                currentBanImageContainer.children[i],
-                currentBanTextContainer.children[i],
+                currentBanContainer.children[i],
+                currentBanContainer.children[i].children[0].children[2],
+                currentBanContainer.children[i].children[0].children[2].children[3],
                 currentMapId,
                 currentMap,
                 i
@@ -356,10 +356,11 @@ async function mapClickEvent(event) {
 }
 
 // Set Ban
-function setBan(banTile, textTile, id, mapObject, tileNumber) {
+function setBan(banTile, imageTile, textTile, id, mapObject, tileNumber) {
+    console.log(banTile, imageTile, textTile)
     banTile.dataset.id = id
-    banTile.style.backgroundImage =  `url("https://assets.ppy.sh/beatmaps/${mapObject.beatmapset_id}/covers/cover.jpg")`
-    banTile.children[1].style.display = "block"
+    imageTile.style.backgroundImage =  `url("https://assets.ppy.sh/beatmaps/${mapObject.beatmapset_id}/covers/cover.jpg")`
+    imageTile.style.display = "block"
     textTile.textContent = `${mapObject.mod}${mapObject.order}`
 }
 
