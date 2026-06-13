@@ -9,8 +9,6 @@ async function getBeatmaps() {
     roundNameEl.textContent = response.data.roundName
 }
 getBeatmaps()
-// Find Beatmaps
-const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.beatmap_id) === Number(beatmapId))
 
 // Now Playing Information
 const nowPlayingSectionDetailsEl = document.getElementById("now-playing-section-details")
@@ -25,7 +23,7 @@ const statsBpmEl = document.getElementById("stats-bpm")
 const statsCsEl = document.getElementById("stats-cs")
 const statsOdEl = document.getElementById("stats-od")
 // Variables
-let currentId, currentChecksum, mapFound = false, currentBeatmap
+let currentId, currentChecksum
 
 const socket = createTosuWsSocket()
 socket.onmessage = async event => {
@@ -109,7 +107,7 @@ ComfyJS.onChat = ( user, message, flags, self, extra ) => {
 }
 
 // Delete message
-ComfyJS.onMessageDeleted = (id, extra) => document.getElementById(id).remove()
+ComfyJS.onMessageDeleted = (id) => document.getElementById(id).remove()
 
 // Timeout
 ComfyJS.onTimeout = ( timedOutUsername, durationInSeconds, extra ) => deleteAllMessagesFromUser(extra.timedOutUserId)

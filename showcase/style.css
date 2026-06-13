@@ -20,7 +20,7 @@
     height: 1080px;
     background: center / cover;
     background-image: url("static/background.png");
-    font-family: "ProtoMono";
+    font-family: ProtoMono, sans-serif;
     overflow: hidden;
 }
 
@@ -197,6 +197,7 @@
     align-items: center;
 }
 .now-playing-stats-sr { grid-column: 1 / 4; }
+
 .now-playing-stats > :nth-child(3),
 .now-playing-stats > :nth-child(4),
 .now-playing-stats > :nth-child(6),

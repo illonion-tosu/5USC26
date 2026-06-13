@@ -29,7 +29,8 @@ module.exports = [
                 DOMParser: "readonly",
                 requestAnimationFrame: "readonly",
                 axios: "readonly",
-                CountUp: "readonly"
+                CountUp: "readonly",
+                ComfyJS: "readyonly"
             },
         },
         rules: {
