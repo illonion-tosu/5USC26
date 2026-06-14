@@ -1,3 +1,8 @@
+:root {
+    --left-colour: hsl(0, 78%, 67%);
+    --right-colour: hsl(194, 78%, 67%);
+}
+
 .main {
     background-image: url("static/background.png");
 }
@@ -56,14 +61,14 @@
     left: 235px;
     width: 1050px;
     height: 510px;
-    border: 4px solid hsl(194, 78%, 67%);
+    border: 4px solid var(--left-colour);
 }
 
 .team-name {
     position: absolute;
     top: 126px;
     font-family: SnowyDays;
-    color: hsl(194, 78%, 67%);
+    color: var(--left-colour);
     font-size: 5rem;
     width: 100%;
     text-align: center;
