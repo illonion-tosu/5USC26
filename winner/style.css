@@ -1,3 +1,42 @@
 .main {
     background-image: url("static/background.png");
 }
+
+.logo {
+    position: absolute;
+    top: 140px;
+    left: 510px;
+    z-index: 2;
+}
+
+.stripes {
+    position: absolute;
+    right: 174px;
+    width: 253px;
+}
+
+.match-winner-image {
+    position: absolute;
+    top: 321px;
+    left: 320px;
+    height: 155px;
+    z-index: 1;
+}
+
+.match-winner-text-content {
+    position: absolute;
+    left: 491px;
+    font-size: 2.7rem;
+    font-family: ProtoMono, sans-serif;
+    z-index: 2;
+}
+
+.match-winner-text {
+    top: 354px;
+    color: white;
+}
+
+.match-winner-round {
+    top: 392px;
+    color: var(--now-playing-text-colour);
+}
