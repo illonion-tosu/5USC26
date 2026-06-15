@@ -1,6 +1,6 @@
 :root {
-    --left-colour: hsl(0, 78%, 67%);
-    --right-colour: hsl(194, 78%, 67%);
+    --left-colour: hsl(0deg 78% 67%);
+    --right-colour: hsl(194deg 78% 67%);
 }
 
 .main {
@@ -67,7 +67,7 @@
 .team-name {
     position: absolute;
     top: 126px;
-    font-family: SnowyDays;
+    font-family: SnowyDays, cursive;
     color: var(--left-colour);
     font-size: 5rem;
     width: 100%;
@@ -80,7 +80,7 @@
     left: 50%;
     transform: translateX(-50%);
     color: white;
-    font-family: ProtoMono;
+    font-family: ProtoMono, sans-serif;
     width: 1000px;
     font-size: 2.25rem;
     letter-spacing: 2px;
@@ -89,6 +89,7 @@
     justify-content: space-evenly;
     row-gap: 27px;
 }
+
 .player-container > * {
     margin-bottom: 0.5rem;
     width: 400px;
