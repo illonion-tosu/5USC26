@@ -22,3 +22,7 @@ function submit() {
     teamsAnchor.setAttribute("download", "teams.json")
     teamsAnchor.click()
 }
+
+window.onload = () => {
+    document.getElementById("button").addEventListener("click", submit)
+}
