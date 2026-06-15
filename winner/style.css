@@ -1,0 +1,93 @@
+:root {
+    --left-colour: hsl(0deg 78% 67%);
+    --right-colour: hsl(194deg 78% 67%);
+}
+
+/* ===========================
+    Cosmetics
+=========================== */
+.logo {
+    position: absolute;
+    top: 140px;
+    left: 510px;
+    z-index: 2;
+}
+
+.stripes {
+    position: absolute;
+    right: 174px;
+    width: 253px;
+}
+
+/* ===========================
+   Match Winner
+=========================== */
+.match-winner-image {
+    position: absolute;
+    top: 321px;
+    left: 320px;
+    height: 155px;
+    z-index: 1;
+}
+
+.match-winner-text-content {
+    position: absolute;
+    left: 491px;
+    font-size: 2.7rem;
+    font-family: ProtoMono, sans-serif;
+    z-index: 2;
+}
+
+.match-winner-text {
+    top: 354px;
+    color: white;
+}
+
+.match-winner-round {
+    top: 392px;
+    color: var(--now-playing-text-colour);
+}
+
+/* ===========================
+    Player Box
+=========================== */
+.player-box {
+    position: absolute;
+    top: 400px;
+    left: 235px;
+    width: 1050px;
+    height: 510px;
+    border: 4px solid var(--left-colour);
+}
+
+.team-name {
+    position: absolute;
+    top: 126px;
+    font-family: SnowyDays, cursive;
+    color: var(--left-colour);
+    font-size: 5rem;
+    width: 100%;
+    text-align: center;
+}
+
+.player-container {
+    position: absolute;
+    top: 273px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: ProtoMono, sans-serif;
+    width: 1000px;
+    font-size: 2.25rem;
+    letter-spacing: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 27px;
+}
+
+.player-container > * {
+    margin-bottom: 0.5rem;
+    width: 400px;
+    text-align: center;
+}

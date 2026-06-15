@@ -46,6 +46,7 @@
 
 .chat-display {
     position: absolute;
+    top: unset;
     right: 34px;
     bottom: 188px;
     width: 235px;
@@ -56,7 +57,7 @@
     --margin: 7px;
 
     position: absolute;
-    left: var(--margin);
+    left: 117px;
     top: var(--margin);
     width: calc(100% - var(--margin) * 2);
     height: calc(100% - var(--margin) * 2);
