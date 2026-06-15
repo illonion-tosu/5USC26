@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="../_shared/common.css">
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="main">
@@ -16,7 +18,7 @@
         <!-- Match Winner -->
         <img class="match-winner-image" src="static/match-winner-image.png">
         <div class="match-winner-text-content match-winner-text">MATCH WINNER</div>
-        <div class="match-winner-text-content match-winner-round">QUARTERFINALS</div>
+        <div class="match-winner-text-content match-winner-round" id="match-winner-round">QUARTERFINALS</div>
 
         <!-- Player Box -->
         <div class="player-box">
@@ -33,5 +35,7 @@
             </div>
         </div>
     </div>
+
+    <script src="index.js" type="module"></script>
 </body>
 </html>
