@@ -481,6 +481,7 @@ button {
     Full Width Button
 =========================== */
 #toggle-autopick, #toggle-stars, #next-picker-none, #apply-changes, .full-width-button { width: 220px; }
+#next-picker { color: white; }
 
 /* ===========================
     Mappool Override Select
