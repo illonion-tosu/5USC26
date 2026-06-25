@@ -115,3 +115,11 @@
     transform: translateX(-50%) rotate(180deg);
     transition: 500ms ease-in-out;
 }
+
+.chat-display-container {
+    position: absolute;
+    top: var(--margin);
+    left: 50%;
+    transform: translateX(-50%);
+    height: calc(100% - var(--margin) * 2);
+}

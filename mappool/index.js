@@ -56,7 +56,7 @@ async function getBeatmaps() {
     roundNameEl.textContent = roundName
 
     // Append map buttons
-    for (let i = 0; i < allBeatmaps.length - 1; i++) {
+    for (let i = 0; i < allBeatmaps.length; i++) {
         const button = document.createElement("button")
         button.textContent = `${allBeatmaps[i].mod}${allBeatmaps[i].order}`
         button.addEventListener("mousedown", mapClickEvent)
@@ -89,7 +89,6 @@ async function getBeatmaps() {
 
     // Geenrate bans
     for (let i = 0; i < currentBanCount; i++) {
-        console.log("hello")
         teamBanContainerLeftEl.append(createMappoolBanTile("red"))
         teamBanContainerRightEl.append(createMappoolBanTile("blue"))
     }
@@ -586,12 +585,12 @@ socket.onmessage = event => {
         }
 
         previousIpcState = currentIpcState
+    }
 
-        // Chat Display
-        const chatData = data.tourney.chat
-        if (chatLen !== chatData.length) {
-            chatLen = updateChat(chatLen, chatData, chatDisplayContainerEl)
-        }
+    // Chat Display
+    const chatData = data.tourney.chat
+    if (chatLen !== chatData.length) {
+        chatLen = updateChat(chatLen, chatData, chatDisplayContainerEl)
     }
 }
 
