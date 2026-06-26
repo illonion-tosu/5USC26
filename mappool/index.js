@@ -441,7 +441,7 @@ socket.onmessage = event => {
         setFlagAndTeamName(currentLeftTeamName, leftTeamNameEl, ticketLeftTeamNameEl, "Left", leftTeamFlagEl)
     }
     if (currentRightTeamName !== data.tourney.team.right) {
-        currentRightTeamName = data.tourney.team.left
+        currentRightTeamName = data.tourney.team.right
         setFlagAndTeamName(currentRightTeamName, rightTeamNameEl, ticketRightTeamNameEl, "Right", rightTeamFlagEl)
     }
 
