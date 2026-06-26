@@ -16,7 +16,7 @@ const teamBanContainerRightEl = document.getElementById("team-bans-container-rig
 const roundNameEl = document.getElementById("round-name")
 const mappoolManagementMapsEl = document.getElementById("mappool-management-maps")
 let allBeatmaps, roundName
-let currentBestOf, currentFirstTo, currentStarLeft = 0, currentStarRight = 0, currentBanCount = 0
+let currentBestOf, currentFirstTo, currentStarLeft = 0, currentStarRight = 0, currentBanCount = 2
 async function getBeatmaps() {
     const response = await axios.get("../_data/beatmaps.json")
     // Set information
@@ -27,15 +27,12 @@ async function getBeatmaps() {
     switch (roundName) {
         case "ROUND OF 32":
             currentBestOf = 9
-            currentBanCount = 1
             break
         case "ROUND OF 16": case "QUARTERFINALS":
             currentBestOf = 11
-            currentBanCount = 2
             break
         case "SEMIFINALS": case "FINALS":
             currentBestOf = 13
-            currentBanCount = 2
             break
         case "GRAND FINALS":
             currentBestOf = 15
@@ -386,6 +383,8 @@ const leftTeamNameEl= document.getElementById("left-team-name")
 const rightTeamNameEl = document.getElementById("right-team-name")
 const ticketLeftTeamNameEl = document.getElementById("ticket-left-team-name")
 const ticketRightTeamNameEl = document.getElementById("ticket-right-team-name")
+const leftTeamFlagEl= document.getElementById("left-team-flag")
+const rightTeamFlagEl= document.getElementById("right-team-flag")
 let currentLeftTeamName, currentRightTeamName
 
 // Set scores
@@ -414,6 +413,23 @@ const statsOdEl = document.getElementById("stats-od")
 const chatDisplayContainerEl = document.getElementById("chat-display-container")
 let chatLen = 0
 
+// Set flag and team name
+function setFlagAndTeamName(teamName, topTeamNameElement, ticketTeamNameElement, side, teamFlagElement) {
+    const uppercaseName = currentLeftTeamName.toUpperCase()
+    topTeamNameElement.textContent = uppercaseName
+    ticketTeamNameElement.textContent = uppercaseName
+
+    // Set team flag
+    teamFlagElement.setAttribute("src", `../flags/${teamName}.png`)
+    teamFlagElement.onerror = () => {
+        teamFlagElement.onerror = null
+        teamFlagElement.src = "../flags/transparent.png"
+    }
+
+    document.cookie = `current${side}TeamName=${teamName}; path=/`
+}
+
+
 // Socket
 const socket = createTosuWsSocket()
 socket.onmessage = event => {
@@ -422,17 +438,11 @@ socket.onmessage = event => {
     // Team information
     if (currentLeftTeamName !== data.tourney.team.left) {
         currentLeftTeamName = data.tourney.team.left
-        const uppercaseName = currentLeftTeamName.toUpperCase()
-        leftTeamNameEl.textContent = uppercaseName
-        ticketLeftTeamNameEl.textContent = uppercaseName
-        document.cookie = `currentLeftTeamName=${currentLeftTeamName}; path=/`
+        setFlagAndTeamName(currentLeftTeamName, leftTeamNameEl, ticketLeftTeamNameEl, "Left", leftTeamFlagEl)
     }
     if (currentRightTeamName !== data.tourney.team.right) {
-        currentRightTeamName = data.tourney.team.right
-        const uppercaseName = currentRightTeamName.toUpperCase()
-        rightTeamNameEl.textContent = uppercaseName
-        ticketRightTeamNameEl.textContent = uppercaseName
-        document.cookie = `currentRightTeamName=${currentRightTeamName}; path=/`
+        currentRightTeamName = data.tourney.team.left
+        setFlagAndTeamName(currentRightTeamName, rightTeamNameEl, ticketRightTeamNameEl, "Right", rightTeamFlagEl)
     }
 
     // Mappool map
