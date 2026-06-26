@@ -532,25 +532,25 @@ socket.onmessage = event => {
             obsSetCurrentScene(gameplay_scene_name)
         }
         
-        currentScoreLeft = 0
-        currentScoreRight = 0
+        currentScoreLeft = data.tourney.totalScore.left
+        currentScoreRight = data.tourney.totalScore.right
         
         // Check if mappool map
-        for (let i = 0; i < data.tourney.clients.length; i++) {
-            let currentScore = data.tourney.clients[i].play.score
+        // for (let i = 0; i < data.tourney.clients.length; i++) {
+        //     let currentScore = data.tourney.clients[i].play.score
 
-            // Set EZ Multiplier
-            if (currentMappoolBeatmap && 
-                (currentMappoolBeatmap.mod === "FCM" || currentMappoolBeatmap.mod === "FM" || currentMappoolBeatmap.mod === "TB") &&
-                data.tourney.clients[i].play.mods.name.includes("EZ")
-            ) {
-                currentScore *= currentMappoolBeatmap.EZMultiplier ?? 1.8
-            }
+        //     // Set EZ Multiplier
+        //     if (currentMappoolBeatmap && 
+        //         (currentMappoolBeatmap.mod === "FCM" || currentMappoolBeatmap.mod === "FM" || currentMappoolBeatmap.mod === "TB") &&
+        //         data.tourney.clients[i].play.mods.name.includes("EZ")
+        //     ) {
+        //         currentScore *= currentMappoolBeatmap.EZMultiplier ?? 1.8
+        //     }
 
-            // Set score to team
-            if (data.tourney.clients[i].team === "left") currentScoreLeft += currentScore
-            else currentScoreRight += currentScore
-        }
+        //     // Set score to team
+        //     if (data.tourney.clients[i].team === "left") currentScoreLeft += currentScore
+        //     else currentScoreRight += currentScore
+        // }
     }
 
     // Update IPC State

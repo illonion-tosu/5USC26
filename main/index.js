@@ -154,13 +154,14 @@ socket.onmessage = event => {
 
     if (scoreVisible) {
         // Update scores
-        let currentScoreLeft = 0, currentScoreRight = 0
-        for (let i = 0; i < data.tourney.clients.length; i++) {
-            let currentScore = data.tourney.clients[i].play.score
-            if (currentBeatmap && currentBeatmap.EZMultiplier && data.tourney.clients[i].play.mods.name.includes("EZ")) currentScore *= currentBeatmap.EZMultiplier ?? 1.8
-            if (data.tourney.clients[i].team === "left") currentScoreLeft += currentScore
-            else currentScoreRight += currentScore
-        }
+        let currentScoreLeft = data.tourney.totalScore.left
+        let currentScoreRight = data.tourney.totalScore.right
+        // for (let i = 0; i < data.tourney.clients.length; i++) {
+        //     let currentScore = data.tourney.clients[i].play.score
+        //     if (currentBeatmap && currentBeatmap.EZMultiplier && data.tourney.clients[i].play.mods.name.includes("EZ")) currentScore *= currentBeatmap.EZMultiplier ?? 1.8
+        //     if (data.tourney.clients[i].team === "left") currentScoreLeft += currentScore
+        //     else currentScoreRight += currentScore
+        // }
         animation.scoreLeft.update(currentScoreLeft)
         animation.scoreRight.update(currentScoreRight)
 
