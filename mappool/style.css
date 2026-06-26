@@ -572,3 +572,11 @@ button {
     transform: unset;
     width: 875px;
 }
+
+.chat-display-container {
+    position: absolute;
+    top: var(--margin);
+    left: 50%;
+    transform: translateX(-50%);
+    height: calc(100% - var(--margin) * 2);
+}

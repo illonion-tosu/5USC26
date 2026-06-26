@@ -5,8 +5,6 @@
     --middle-now-playing-section-height: 153px;
     --middle-now-playing-top-section-height: 34px;
     --middle-now-playing-top-section-padding-left: 30px;
-    --score-colour-left: rgb(212 20 94);
-    --score-colour-right: rgb(112 205 233);
     --score-horizontal-alignment: 480px;
     --score-bar-horizontal-alignment: 50%;
     --sidebar-background-colour: rgb(38 39 43);
@@ -114,4 +112,12 @@
     left: 50%;
     transform: translateX(-50%) rotate(180deg);
     transition: 500ms ease-in-out;
+}
+
+.chat-display-container {
+    position: absolute;
+    top: var(--margin);
+    left: 50%;
+    transform: translateX(-50%);
+    height: calc(100% - var(--margin) * 2);
 }
