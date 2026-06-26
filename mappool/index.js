@@ -415,7 +415,7 @@ let chatLen = 0
 
 // Set flag and team name
 function setFlagAndTeamName(teamName, topTeamNameElement, ticketTeamNameElement, side, teamFlagElement) {
-    const uppercaseName = currentLeftTeamName.toUpperCase()
+    const uppercaseName = teamName.toUpperCase()
     topTeamNameElement.textContent = uppercaseName
     ticketTeamNameElement.textContent = uppercaseName
 
