@@ -183,14 +183,17 @@ socket.onmessage = event => {
             scoreBarLeftEl.style.width = `${scoreBarRectangleWidth}px`
             scoreBarRightEl.style.width = "0px"
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 - scoreBarDifferencePercent * 120)}deg)`
+            scoreDialEl.setAttribute("src", "static/dial-arrow-red.png")
         } else if (currentScoreLeft === currentScoreRight) {
             scoreBarLeftEl.style.width = "0px"
             scoreBarRightEl.style.width = "0px"
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90)}deg)`
+            scoreDialEl.setAttribute("src", "static/dial-arrow-black.png")
         } else if (currentScoreLeft < currentScoreRight) {
             scoreBarLeftEl.style.width = "0px"
             scoreBarRightEl.style.width = `${scoreBarRectangleWidth}px`
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 + scoreBarDifferencePercent * 120)}deg)`
+            scoreDialEl.setAttribute("src", "static/dial-arrow-blue.png")
         }
     }
 

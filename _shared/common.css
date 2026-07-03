@@ -154,7 +154,8 @@
 .now-playing-metadata-title {
     color: white;
     display: flex;
-    /*gap: 0px*/
+    
+    /* gap: 0px */
 }
 
 #now-playing-title-text {
@@ -162,7 +163,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 0;
-    /*flex: 1;*/
+    
+    /* flex: 1; */
 }
 
 #now-playing-title-slot {
