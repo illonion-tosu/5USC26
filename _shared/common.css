@@ -151,7 +151,26 @@
     text-overflow: ellipsis;
 }
 
-.now-playing-metadata-title { color: white; }
+.now-playing-metadata-title {
+    color: white;
+    display: flex;
+    
+    /* gap: 0px */
+}
+
+#now-playing-title-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    
+    /* flex: 1; */
+}
+
+#now-playing-title-slot {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
 
 /* ===========================
    Now Playing Stats

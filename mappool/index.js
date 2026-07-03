@@ -340,6 +340,7 @@ async function mapClickEvent(event) {
 
         // Set picker
         document.cookie = `currentPicker=${team}; path=/`
+        nowPlayingSongTitleEl.style.color = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
 
         // Go to gameplay scene
         await delay(10000)
@@ -368,6 +369,10 @@ function setPick(pickTile, id, currentMap, team) {
     pickTile.children[1].style.color = team === "left" ? "white" : "black"
     pickTile.children[3].style.backgroundColor = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
     pickTile.children[1].textContent = `${currentMap.mod}${currentMap.order}`
+
+    // Set picker
+    document.cookie = `currentPicker=${team}; path=/`
+    nowPlayingSongTitleEl.style.color = team === "left" ? "var(--ban-container-colour-left)" : "var(--ban-container-colour-right)"
 }
 
 // Set winner
@@ -889,7 +894,7 @@ let autoadvance_button = document.getElementById('auto-advance-button')
 let enableAutoAdvance = false
 const gameplay_scene_name = "Gameplay"
 const mappool_scene_name = "Mappool"
-const winner_scene_name = "Team Win"
+const winner_scene_name = "Winner"
 
 function switchAutoAdvance() {
     enableAutoAdvance = !enableAutoAdvance

@@ -2,6 +2,9 @@ import { updateChat } from "../_shared/core/chat.js"
 import { getCookie, setLengthDisplay } from "../_shared/core/utils.js"
 import { createTosuWsSocket } from "../_shared/core/websocket.js"
 
+// Clear cookie
+document.cookie = `currentPicker=; path=/`
+
 // Team Inforamtion
 const leftTeamFlagEl= document.getElementById("left-team-flag")
 const rightTeamFlagEl = document.getElementById("right-team-flag")
@@ -172,22 +175,26 @@ socket.onmessage = event => {
         // Score bar width
         const multiplier = 1
         const scoreBarMaxWidth = 960
-        let scoreBarDifferencePercent = Math.min(scoreDifference / (450000 * multiplier), 1)
-        let scoreBarRectangleWidth = Math.min(Math.pow(scoreBarDifferencePercent, 0.5) * scoreBarMaxWidth, scoreBarMaxWidth)
+		const scoreBarMaxDifference = 800000 // originally was 450000
+        let scoreBarDifferencePercent = Math.min(scoreDifference / (scoreBarMaxDifference * multiplier), 1)
+        let scoreBarRectangleWidth = Math.min(Math.pow(scoreBarDifferencePercent, 1.4) * scoreBarMaxWidth, scoreBarMaxWidth)
 
         // Score bar
         if (currentScoreLeft > currentScoreRight) {
             scoreBarLeftEl.style.width = `${scoreBarRectangleWidth}px`
             scoreBarRightEl.style.width = "0px"
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 - scoreBarDifferencePercent * 120)}deg)`
+            scoreDialEl.setAttribute("src", "static/dial-arrow-red.png")
         } else if (currentScoreLeft === currentScoreRight) {
             scoreBarLeftEl.style.width = "0px"
             scoreBarRightEl.style.width = "0px"
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90)}deg)`
+            scoreDialEl.setAttribute("src", "static/dial-arrow-black.png")
         } else if (currentScoreLeft < currentScoreRight) {
             scoreBarLeftEl.style.width = "0px"
             scoreBarRightEl.style.width = `${scoreBarRectangleWidth}px`
             scoreDialEl.style.transform = `translateX(-50%) rotate(${Math.round(90 + scoreBarDifferencePercent * 120)}deg)`
+            scoreDialEl.setAttribute("src", "static/dial-arrow-blue.png")
         }
     }
 
@@ -226,12 +233,19 @@ function setFlagAndTeamName(teamName, teamNameElement, teamFlagElement) {
 
 // Interval stuff reading cookies and setting information
 const leagueNameEl = document.getElementById("league-name")
+let currentPicker
 let currentLeagueName, previousLeagueName
 let currentFirstTo, previousFirstTo
 let currentStarLeft, previousStarLeft
 let currentStarRight, previousStarRight
 let isStarToggled
 setInterval(() => {
+    // Set picker
+    currentPicker = getCookie("currentPicker")
+    if (currentPicker === "left") nowPlayingSongTitleEl.style.color = "var(--ban-container-colour-left)"
+    else if (currentPicker === "right") nowPlayingSongTitleEl.style.color = "var(--ban-container-colour-right)"
+    else nowPlayingSongTitleEl.style.color = "white"
+
     // Set league name
     currentLeagueName = getCookie("leagueName")
     if (currentLeagueName !== previousLeagueName) {
