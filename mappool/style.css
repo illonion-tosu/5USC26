@@ -571,6 +571,7 @@ button {
     left: unset;
     transform: unset;
     width: 875px;
+    border-color: #d91b5d64
 }
 
 .chat-display-container {
