@@ -840,9 +840,12 @@ function mappoolOverrideRemovePick() {
 
     currentTile.removeAttribute("data-id")
     currentTile.children[0].style.backgroundImage = "none"
-    currentTile.children[1].style.backgroundColor = "#2a2c30"
+    currentTile.children[1].style.backgroundColor = "unset"
+    currentTile.children[1].style.color = "unset"
     currentTile.children[1].textContent = ""
     currentTile.children[2].style.display = "none"
+    currentTile.children[2].style.display = "none"
+    currentTile.children[3].style.backgroundColor = "unset"
 }
 
 // Set Mappool Override Team Winner
