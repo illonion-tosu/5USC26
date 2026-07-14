@@ -27,7 +27,10 @@ const findBeatmaps = beatmapId => allBeatmaps.find(beatmap => Number(beatmap.bea
 // Now Playing Information
 const nowPlayingSectionDetailsEl = document.getElementById("now-playing-section-details")
 const nowPlayingSongTitleEl = document.getElementById("now-playing-song-title")
+const titleTextEl = document.getElementById("now-playing-title-text")
+const titleSlotEl = document.getElementById("now-playing-title-slot")
 const nowPlayingSongArtistEl = document.getElementById("now-playing-song-artist")
+
 // Stats
 const statsSrEl = document.getElementById("stats-sr")
 const statsLengthEl = document.getElementById("stats-length")
@@ -89,10 +92,14 @@ socket.onmessage = event => {
         mapFound = false
 
         nowPlayingSectionDetailsEl.style.backgroundImage = `url("${location.origin}/Songs/${data.folders.beatmap}/${data.files.background}")`
-        nowPlayingSongTitleEl.textContent = data.beatmap.title
         nowPlayingSongArtistEl.textContent = data.beatmap.artist
     
+        // Display song and slot
         currentBeatmap = findBeatmaps(currentId)
+        let slot = currentBeatmap ? `(${currentBeatmap.mod}${currentBeatmap.order})` : ""
+        titleTextEl.textContent = slot ? `${data.beatmap.title}\u00A0` : data.beatmap.title
+        titleSlotEl.textContent = slot
+        
         if (currentBeatmap) {
             let sr = Math.round(Number(currentBeatmap.difficultyrating) * 100) / 100
             let len = Number(currentBeatmap.total_length)
