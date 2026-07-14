@@ -181,7 +181,7 @@ socket.onmessage = event => {
         // Score bar width
         const multiplier = 1
         const scoreBarMaxWidth = 960
-		const scoreBarMaxDifference = 800000 // originally was 450000
+		const scoreBarMaxDifference = 650000 // originally was 450000, then 800000
         let scoreBarDifferencePercent = Math.min(scoreDifference / (scoreBarMaxDifference * multiplier), 1)
         let scoreBarRectangleWidth = Math.min(Math.pow(scoreBarDifferencePercent, 1.4) * scoreBarMaxWidth, scoreBarMaxWidth)
 
